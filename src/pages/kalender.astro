@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import allEvents from '../data/events.json';
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function getDisciplineClass(d: string) {
+  const map: Record<string, string> = {
+    'Pistol': 'tag-pistol',
+    'Riffel': 'tag-riffel',
+  };
+  return map[d] || 'tag-mixed';
+}
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const upcoming = allEvents
+  .filter(e => new Date(e.date) >= today)
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+const past = allEvents
+  .filter(e => new Date(e.date) < today)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout title="Kalender" description="HSKF stævner, arrangementer og skydeaftener – se hele kalenderen.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <h1 class="section-title">Kalender</h1>
+        <p class="section-subtitle">Kommende stævner, arrangementer og særlige skydeaftener i HSKF.</p>
+      </div>
+
+      <!-- Upcoming events -->
+      <div class="space-y-4 mb-16">
+        {upcoming.length === 0 && (
+          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center text-gray-500 dark:text-gray-400">
+            Ingen kommende arrangementer på nuværende tidspunkt. Tjek igen senere.
+          </div>
+        )}
+        {upcoming.map((event) => (
+          <div id={`event-${event.id}`} class="card border border-gray-100 dark:border-gray-800 p-6 flex flex-col sm:flex-row gap-6">
+            <!-- Date block -->
+            <div class="flex-shrink-0">
+              <div class="w-20 text-center">
+                <div class="rounded-t-lg py-1" style="background-color: var(--color-primary-500);">
+                  <span class="text-xs font-bold text-white uppercase tracking-wider">
+                    {new Date(event.date).toLocaleDateString('da-DK', { month: 'short' })}
+                  </span>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-b-lg py-2">
+                  <span class="text-3xl font-extrabold text-gray-900 dark:text-white leading-none">
+                    {new Date(event.date).getDate()}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                {event.disciplines && event.disciplines.length > 0
+                  ? event.disciplines.map((d: string) => (
+                      <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
+                    ))
+                  : null
+                }
+                <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
+                  📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                </span>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                {formatDate(event.date)} · kl. {event.time}
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{event.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Past events toggle -->
+      {past.length > 0 && (
+        <div>
+          <button
+            id="toggle-past"
+            class="flex items-center gap-2 text-sm font-semibold mb-6 transition-colors"
+            style="color: var(--color-primary-500);"
+          >
+            <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+            <span id="toggle-label">Vis tidligere arrangementer ({past.length})</span>
+          </button>
+
+          <div id="past-events" class="hidden space-y-4">
+            {past.map((event) => (
+              <div class="card border border-gray-100 dark:border-gray-800 p-6 flex flex-col sm:flex-row gap-6 opacity-60">
+                <!-- Date block -->
+                <div class="flex-shrink-0">
+                  <div class="w-20 text-center">
+                    <div class="rounded-t-lg py-1 bg-gray-400">
+                      <span class="text-xs font-bold text-white uppercase tracking-wider">
+                        {new Date(event.date).toLocaleDateString('da-DK', { month: 'short' })}
+                      </span>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-b-lg py-2">
+                      <span class="text-3xl font-extrabold text-gray-900 dark:text-white leading-none">
+                        {new Date(event.date).getDate()}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    {event.disciplines && event.disciplines.length > 0
+                      ? event.disciplines.map((d: string) => (
+                          <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
+                        ))
+                      : null
+                    }
+                    <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
+                      📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                    </span>
+                  </div>
+                  <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    {formatDate(event.date)} · kl. {event.time}
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{event.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Info box -->
+      <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <div>
+            <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-1">Spørgsmål?</h3>
+            <p class="text-sm text-blue-800 dark:text-blue-300">Kontakt os på <a href="mailto:kontakt@hskf.dk" class="underline font-medium">kontakt@hskf.dk</a> ved spørgsmål om arrangementer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Highlight event from anchor link
+    if (window.location.hash) {
+      var target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(function() {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.style.outline = '2px solid var(--color-primary-500)';
+          target.style.borderRadius = '12px';
+          setTimeout(function() { target.style.outline = ''; }, 2000);
+        }, 200);
+      }
+    }
+
+    const btn = document.getElementById('toggle-past');
+    const list = document.getElementById('past-events');
+    const icon = document.getElementById('toggle-icon');
+    if (btn && list && icon) {
+      const count = list.children.length;
+      btn.addEventListener('click', function() {
+        const isHidden = list.classList.contains('hidden');
+        list.classList.toggle('hidden');
+        icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        var label = document.getElementById('toggle-label');
+        if (label) {
+          label.textContent = isHidden
+            ? 'Skjul tidligere arrangementer'
+            : 'Vis tidligere arrangementer (' + count + ')';
+        }
+      });
+    }
+  </script>
+
+</BaseLayout>

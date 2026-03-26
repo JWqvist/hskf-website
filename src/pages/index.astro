@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import events from '../data/events.json';
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const latestEvents = events
+  .filter((e: any) => new Date(e.date) >= today)
+  .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  .slice(0, 3);
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function getDisciplineClass(d: string) {
+  const map: Record<string, string> = {
+    'Pistol': 'tag-pistol',
+    'Riffel': 'tag-riffel',
+  };
+  return map[d] || 'tag-mixed';
+}
+---
+
+<BaseLayout title="Hjem" description="Holmegaard Skytteforening – Skytteforeningen hvor fællesskab og skydning er i fokus. Udendørs baner i Toksvær og indendørs bane i Holmegaard.">
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-screen flex items-center" style="min-height: 85vh;">
+    <!-- Background: real range photo -->
+    <div class="absolute inset-0" style="background-image: url('/images/IMG_3247-scaled.jpg'); background-size: cover; background-position: center;"></div>
+    <!-- Dark overlay for legibility -->
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom right, rgba(3,7,18,0.82), rgba(17,24,39,0.75), rgba(84,10,20,0.70));"></div>
+    <!-- Subtle dot pattern overlay -->
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <!-- Red accent orb -->
+    <div class="absolute pointer-events-none" style="top: 25%; right: 25%; width: 24rem; height: 24rem; background: rgba(196,30,58,0.15); border-radius: 9999px; filter: blur(64px);"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+      <div class="max-w-2xl" style="animation: fadeIn 0.6s ease-out forwards;">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6" style="background: rgba(196,30,58,0.2); border: 1px solid rgba(196,30,58,0.3); color: #fca5a5;">
+          <div class="w-2 h-2 rounded-full" style="background-color: #f87171;"></div>
+          Stiftet 2013 · Holmegaard
+        </div>
+        <h1 class="font-extrabold text-white mb-6 leading-none tracking-tight" style="font-size: clamp(2.5rem, 8vw, 4.5rem);">
+          Præcision.<br/>
+          <span style="color: #f87171;">Fællesskab.</span><br/>
+          Tradition.
+        </h1>
+        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
+          Skytteforeningen hvor fællesskab og skydning er i fokus. Holmegaard Skytteforening byder alle velkommen – fra nysgerrige begyndere til erfarne konkurrenceskytter.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/bliv-medlem" class="btn-primary" style="font-size: 1rem; padding: 0.875rem 2rem;">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Prøv skydning gratis
+          </a>
+          <a href="/om-os" class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200" style="font-size: 1rem; padding: 0.875rem 2rem; border: 1px solid rgba(255,255,255,0.3); color: white;">
+            Læs mere om os
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce" style="color: rgba(255,255,255,0.4);">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Feature tiles -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="section-title">To baner, ét fællesskab</h2>
+        <p class="section-subtitle max-w-2xl mx-auto">Holmegaard Skytteforening råder over to skydeanlæg, der tilbyder optimale betingelser for riffel- og pistolskydning.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Udendørs / Toksværd -->
+        <div class="card p-8 group cursor-pointer border border-transparent hover:border-gray-200 dark:hover:border-gray-700">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors duration-200" style="background-color: #ffedd5;">
+            <svg class="w-6 h-6" style="color: #f97316;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Udendørs baner – Toksvær</h3>
+          <p class="text-sm font-medium mb-3" style="color: var(--color-primary-500);">Udendørs · Riffel &amp; Pistol</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Vores udendørs skydeanlæg i Toksvær rummer baner til både riffel og pistol. Åben i sommersæsonen fra 9. april til 25. september.</p>
+          <a href="/afdelinger" class="inline-flex items-center gap-1 mt-4 text-sm font-semibold transition-colors" style="color: var(--color-primary-500);">
+            Se banen <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Indendørs / Holmegaard -->
+        <div class="card p-8 group cursor-pointer border border-transparent hover:border-gray-200 dark:hover:border-gray-700">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors duration-200" style="background-color: #ccfbf1;">
+            <svg class="w-6 h-6" style="color: #14b8a6;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Indendørs bane – Holmegaard</h3>
+          <p class="text-sm font-medium mb-3" style="color: var(--color-primary-500);">Indendørs · 15m · Riffel &amp; Pistol</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Vores indendørs 15 meter bane i Holmegaard er ideel til riffel- og pistolskydning. Åben i vinterhalvåret – lukker når udendørsbanen åbner.</p>
+          <a href="/afdelinger" class="inline-flex items-center gap-1 mt-4 text-sm font-semibold transition-colors" style="color: var(--color-primary-500);">
+            Se banen <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Club heritage -->
+        <div class="card p-8 cursor-pointer border-transparent" style="background-color: var(--color-primary-500);">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: rgba(255,255,255,0.2);">
+            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Over 200 år med skydesport</h3>
+          <p class="text-sm font-medium mb-3" style="color: rgba(255,255,255,0.7);">Stiftet 2013 ved fusion</p>
+          <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.8);">Holmegaard Skytteforening er resultatet af en fusion i 2013 mellem Toksværd Skytteforening (stiftet 1870) og Fensmark Skytteforening (stiftet 1945). Vi bygger videre på en samlet arv på mere end 200 år.</p>
+          <a href="/om-os" class="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-white hover:opacity-80 transition-opacity">
+            Vores historie <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats strip -->
+  <section class="py-14 bg-white dark:bg-gray-950 border-y border-gray-100 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">2013</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Stiftet ved fusion</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">200+</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Års erfaring</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">2</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Skydebaner</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">DGI</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Tilsluttet DGI Storstrømmen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest events -->
+  <section class="py-20 bg-white dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <h2 class="section-title mb-2">Kommende arrangementer</h2>
+          <p class="text-gray-600 dark:text-gray-400">Stævner, kurser og sociale events</p>
+        </div>
+        <a href="/kalender" class="hidden sm:inline-flex items-center gap-2 font-semibold transition-colors" style="color: var(--color-primary-500);">
+          Se alle <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {latestEvents.map((event) => (
+          <a href={`/kalender#event-${event.id}`} class="card p-6 border border-gray-100 dark:border-gray-800 block hover:border-gray-300 dark:hover:border-gray-600 transition-colors cursor-pointer">
+            <div class="flex items-start justify-between mb-3">
+              <span class={`tag ${getDisciplineClass(event.discipline)}`}>{event.discipline}</span>
+              <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
+                {event.location === 'toksvær' ? 'Toksvær' : 'Holmegaard'}
+              </span>
+            </div>
+            <h3 class="font-bold text-gray-900 dark:text-white mb-1.5 text-lg leading-snug">{event.title}</h3>
+            <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-3">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              {formatDate(event.date)} · {event.time}
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed overflow-hidden" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{event.description}</p>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center sm:hidden">
+        <a href="/kalender" class="btn-outline">Se hele kalenderen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20" style="background-color: var(--color-primary-500);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Klar til at prøve skydesport?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto" style="color: #ffe4e6;">Mød os til en gratis prøveskydning og oplev fællesskabet i HSKF. Ingen erfaring er nødvendig – vi guider dig hele vejen.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/kontakt" class="inline-flex items-center gap-2 font-bold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl" style="padding: 1rem 2rem; background-color: white; color: var(--color-primary-600);">
+          Find os her
+        </a>
+        <a href="/traeningstider" class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200" style="padding: 1rem 2rem; border: 2px solid rgba(255,255,255,0.5); color: white;">
+          Se træningstider
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "title": "Indendørs sæsonstart 2025",
+    "date": "2025-09-25",
+    "time": "18:30",
+    "location": "holmegaard",
+    "disciplines": ["Riffel", "Pistol"],
+    "description": "Torsdag d. 25. september 2025 åbnede vi vintersæsonen på indendørsbanen i Fensmark. Riffelskytter kl. 18:30, pistolskytter kl. 19:30."
+  },
+  {
+    "id": 1,
+    "title": "Årsmøde 2026",
+    "date": "2026-03-30",
+    "time": "19:00",
+    "location": "toksvær",
+    "disciplines": [],
+    "description": "Mandag d. 30. marts 2026 kl. 19:00 – Lundebakkevej 18C, 4684 Holmegaard (25m banen). Dagsorden ifølge vedtægterne. Forslag, der ønskes behandlet på Årsmødet, skal være formanden i hænde senest d. 23. marts 2026."
+  },
+  {
+    "id": 2,
+    "title": "Udendørs sæsonstart 2026",
+    "date": "2026-04-09",
+    "time": "18:30",
+    "location": "toksvær",
+    "disciplines": ["Riffel", "Pistol"],
+    "description": "Torsdag d. 9. april 2026 åbner vi udendørsbanen i Toksværd for sommersæsonen. Alle skytter – riffel og pistol – er velkomne fra kl. 18:30."
+  }
+]

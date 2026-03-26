@@ -1,0 +1,10 @@
+[
+  {
+    "id": "kontingent-2026",
+    "message": "Husk at betale kontingent for 2026 – deadline 1. april.",
+    "type": "warning",
+    "from": "2026-03-01",
+    "to": "2026-04-01",
+    "link": { "label": "Kontakt bestyrelsen", "href": "mailto:kontakt@hskf.dk" }
+  }
+]

@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    step: '1',
+    title: 'Mød os til en gratis prøveskydning',
+    desc: 'Kom bare forbi til en af vores træningstider – ingen tilmelding er nødvendig. Vi låner dig udstyr og en erfaren instruktør guider dig igennem sikkerhed og teknik. Det er helt gratis og uforpligtende.',
+    action: null,
+  },
+  {
+    step: '2',
+    title: 'Indmeldelse i HSKF',
+    desc: 'Har du prøvet skydningen og vil gerne blive medlem? Send en email til bestyrelsen med dit navn, adresse og disciplinønsker. Vi sørger for indmeldelse i klubben og i Dansk Sportsskytte Forbund (DSF).',
+    action: { label: 'Send indmeldelse', href: 'mailto:kontakt@hskf.dk?subject=Indmeldelse%20i%20HSKF&body=Hej%20HSKF%2C%0A%0AJeg%20er%20interesseret%20i%20at%20melde%20mig%20ind%20i%20Holmegaard%20Skytteforening.%0A%0ANavn%3A%20%0AAdresse%3A%20%0ATelefon%3A%20%0ADisciplin%3A%20', external: false },
+  },
+  {
+    step: '3',
+    title: 'Søg om SKV-tilladelse',
+    desc: 'For at blive aktivt skydende medlem kræves en SKV-tilladelse (skydevåbentilladelse til sportsbrug) fra politiet. Vi hjælper dig med papirerne.',
+    action: { label: 'SKV-blanketter (Politiet)', href: 'https://skvportal.microsoftcrmportals.com/blanketter/', external: true },
+  },
+];
+---
+
+<BaseLayout title="Bliv medlem" description="Bliv medlem af Holmegaard Skytteforening – start med en gratis prøveskydning.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-12">
+        <h1 class="section-title">Bliv medlem</h1>
+        <p class="section-subtitle">Trin for trin – din vej ind i HSKF.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Steps -->
+        <div class="lg:col-span-2 space-y-6">
+          {steps.map((item) => (
+            <div class="card border border-gray-100 dark:border-gray-800 p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 text-white rounded-xl flex items-center justify-center font-extrabold text-lg flex-shrink-0" style="background-color: var(--color-primary-500);">{item.step}</div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                  <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{item.desc}</p>
+                  {item.action && (
+                    <a
+                      href={item.action.href}
+                      target={item.action.external ? '_blank' : undefined}
+                      rel={item.action.external ? 'noopener noreferrer' : undefined}
+                      class="btn-primary text-sm"
+                    >
+                      {item.action.label}
+                      {item.action.external && (
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                      )}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- CTA card -->
+          <div class="rounded-2xl p-6 text-white" style="background-color: var(--color-primary-500);">
+            <h3 class="text-xl font-bold mb-2">Klar til at starte?</h3>
+            <p class="text-sm mb-5 leading-relaxed" style="color: #ffe4e6;">Se vores træningstider og mød os på banen – ingen tilmelding nødvendig.</p>
+            <a href="/kontakt" class="inline-flex items-center gap-2 px-5 py-3 bg-white font-bold rounded-lg transition-colors duration-200 w-full justify-center text-sm" style="color: var(--color-primary-600);">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              Find os her
+            </a>
+          </div>
+
+          <!-- Info card -->
+          <div class="card border border-gray-100 dark:border-gray-800 p-6">
+            <h3 class="font-bold text-gray-900 dark:text-white mb-4">Praktisk info</h3>
+            <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Prøveskydning er gratis og uforpligtende
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Udstyr lånes – tag blot sportstøj og lukkede sko
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Kontingent: kontakt for aktuelle priser
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                SKV-vejledning gives af klubbens instruktører
+              </li>
+            </ul>
+          </div>
+
+          <!-- Disciplines card -->
+          <div class="card border border-gray-100 dark:border-gray-800 p-6">
+            <h3 class="font-bold text-gray-900 dark:text-white mb-4">Discipliner i HSKF</h3>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2"><span class="tag tag-pistol">Pistol</span></div>
+              <div class="flex items-center gap-2"><span class="tag tag-riffel">Riffel</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

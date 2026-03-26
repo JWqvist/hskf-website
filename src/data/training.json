@@ -1,0 +1,62 @@
+[
+  {
+    "day": "Torsdag",
+    "dayEn": "Thursday",
+    "sessions": [
+      {
+        "time": "Fra kl. 18:30",
+        "location": "toksvær",
+        "discipline": "Riffel",
+        "notes": "Sommersæson: 9. april – 25. september. Udendørs på 25m banen i Toksværd."
+      },
+      {
+        "time": "Fra kl. 18:30",
+        "location": "holmegaard",
+        "discipline": "Riffel",
+        "notes": "Vintersæson: 25. september – 9. april. Indendørs på 15m banen i Holmegaard."
+      },
+      {
+        "time": "Fra kl. 18:30",
+        "location": "toksvær",
+        "discipline": "Pistol",
+        "notes": "Sommersæson: 9. april – 25. september. Udendørs pistol på 25m banen i Toksværd."
+      },
+      {
+        "time": "Fra kl. 19:30",
+        "location": "holmegaard",
+        "discipline": "Pistol",
+        "notes": "Vintersæson: 25. september – 9. april. Indendørs pistol på 15m banen i Holmegaard."
+      }
+    ]
+  },
+  {
+    "day": "Mandag",
+    "dayEn": "Monday",
+    "sessions": []
+  },
+  {
+    "day": "Tirsdag",
+    "dayEn": "Tuesday",
+    "sessions": []
+  },
+  {
+    "day": "Onsdag",
+    "dayEn": "Wednesday",
+    "sessions": []
+  },
+  {
+    "day": "Fredag",
+    "dayEn": "Friday",
+    "sessions": []
+  },
+  {
+    "day": "Lørdag",
+    "dayEn": "Saturday",
+    "sessions": []
+  },
+  {
+    "day": "Søndag",
+    "dayEn": "Sunday",
+    "sessions": []
+  }
+]

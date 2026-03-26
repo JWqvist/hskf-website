@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const timeline = [
+  { year: '1870', title: 'Toksværd Skytteforening', desc: 'Toksværd Skytteforening stiftes og opbygger en stolt tradition for skydesport i lokalområdet.' },
+  { year: '1945', title: 'Fensmark Skytteforening', desc: 'Fensmark Skytteforening etableres og dyrker skydesport gennem årtier i Fensmark-området.' },
+  { year: '1982', title: 'Fælles 25m Pistolbane', desc: 'Toksværd og Fensmark Skytteforeninger går sammen om at bygge en fælles 25m pistolbane – et samarbejde der styrker grundlaget for det fremtidige fællesskab.' },
+  { year: '2013', title: 'Fusion & Holmegaard Skytteforening', desc: 'Den 11. september 2013 besluttes fusionen. Den 1. oktober 2013 trådte Holmegaard Skytteforening officielt i kraft, grundlagt på mere end 200 års samlet erfaring.' },
+  { year: '2025', title: 'I dag', desc: 'Holmegaard Skytteforening er en levende klub med to baner, et stærkt fællesskab og en stolt skyttehistorie. Vi er tilsluttet DGI Storstrømmen.' },
+];
+
+const values = [
+  {
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+    title: 'Fællesskab',
+    desc: 'Vi er en klub for alle. Vi skaber et trygt og inkluderende miljø, hvor både børn, unge og voksne kan udvikle sig.',
+  },
+  {
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    title: 'Sikkerhed',
+    desc: 'Ansvarlig omgang med skydevåben er altid første prioritet. Vi følger alle gældende regler og sikkerhedsprocedurer.',
+  },
+  {
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    title: 'Præcision',
+    desc: 'Vi fremmer interessen for skydning som sport og fritidsaktivitet og stræber konstant efter at forbedre præstationerne.',
+  },
+  {
+    icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+    title: 'Udvikling',
+    desc: 'Vi byder både nye og erfarne skytter velkommen i et fællesskab præget af respekt, udvikling og sammenhold.',
+  },
+  {
+    icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Tradition',
+    desc: 'Vi bevarer og viderefører de stolte traditioner fra vores historiske baggrund – over 200 års samlet skyttearv.',
+  },
+  {
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+    title: 'Passion',
+    desc: 'Vi elsker skydesport og det vises. Engagementet og glæden er til at mærke, hver gang vi mødes på banen.',
+  },
+];
+---
+
+<BaseLayout title="Om os" description="Lær mere om Holmegaard Skytteforenings historie, værdier og fællesskab.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Page header -->
+      <div class="max-w-3xl mb-16">
+        <h1 class="section-title">Om Holmegaard Skytteforening</h1>
+        <p class="section-subtitle">En klub med rod i tradition og blik for fremtiden.</p>
+      </div>
+
+      <!-- History -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold mb-6" style="background-color: #ffe4e6; color: var(--color-primary-700);">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Stiftet 2013 · Over 200 år samlet erfaring
+          </div>
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-5">Vores historie</h2>
+          <div class="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p>Holmegaard Skytteforening er resultatet af en stærk og værdibåret fusion mellem Toksværd Skytteforening og Fensmark Skytteforening. Beslutningen om at forene de to lokale foreninger blev truffet den 11. september 2013, og fusionen trådte officielt i kraft den 1. oktober samme år.</p>
+            <p>Vi bygger videre på en samlet arv med mere end 200 års erfaring, hvor fællesskab, præcision og tradition går hånd i hånd. Toksværd Skytteforening blev stiftet i 1870, og Fensmark Skytteforening i 1945.</p>
+            <p>Med rødderne dybt forankret i lokalområdet og en stolt tradition for skydesport, viderefører vi nu arven under navnet Holmegaard Skytteforening. Vi byder både nye og erfarne skytter velkommen i et fællesskab præget af respekt, udvikling og sammenhold.</p>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="space-y-4">
+          {timeline.map((item) => (
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background-color: var(--color-primary-500);">{item.year.slice(2)}</div>
+                <div class="w-0.5 bg-gray-200 dark:bg-gray-700 flex-1 my-1"></div>
+              </div>
+              <div class="pb-4">
+                <div class="font-bold text-gray-900 dark:text-white text-sm">{item.year} – {item.title}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="mb-20">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">Vores værdier</h2>
+        <p class="text-gray-600 dark:text-gray-400 text-center mb-10 max-w-2xl mx-auto">Det er ikke kun skydning, der binder os sammen. Det er mennesker, engagement og et oprigtigt ønske om at gøre hinanden bedre.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {values.map((v) => (
+            <div class="card border border-gray-100 dark:border-gray-800 p-6">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background-color: #ffe4e6;">
+                <svg class="w-5 h-5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={v.icon}/>
+                </svg>
+              </div>
+              <h3 class="font-bold text-gray-900 dark:text-white mb-2">{v.title}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- DSF -->
+      <!-- Bestyrelse teaser -->
+      <div class="mb-20">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">Bestyrelsen</h2>
+        <p class="text-gray-600 dark:text-gray-400 text-center mb-10 max-w-2xl mx-auto">Holmegaard Skytteforening ledes af en bestyrelse bestående af formand og 6 bestyrelsesmedlemmer.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {[
+            { role: 'Formand', name: 'Niels-Erik Hansen', email: 'formand@hskf.dk' },
+            { role: 'Kassér', name: 'Bente Judy Pedersen', email: 'kasserer@hskf.dk' },
+            { role: 'Næstformand', name: 'Christian Vilhelmsen', email: null },
+            { role: 'Bestyrelsesmedlem', name: 'Peter Bue Westh', email: null },
+            { role: 'Bestyrelsesmedlem', name: 'Henning Petersen', email: null },
+            { role: 'Bestyrelsesmedlem', name: 'Jeppe Wiederqvist', email: null },
+            { role: 'Bestyrelsesmedlem', name: 'Steen Smidt', email: null },
+            { role: 'Suppleant', name: 'Lars Ellersted', email: null },
+          ].map((member) => (
+            <div class="card border border-gray-100 dark:border-gray-800 p-4 text-center">
+              <div class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--color-primary-500);">{member.role}</div>
+              <div class="font-bold text-gray-900 dark:text-white text-sm">{member.name}</div>
+              {member.email && (
+                <a href={`mailto:${member.email}`} class="text-xs text-gray-500 hover:underline mt-1 block">{member.email}</a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="p-8 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Tilknyttet DGI Storstrømmen</h2>
+        <p class="text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">Holmegaard Skytteforening er tilsluttet DGI Storstrømmen og dermed underlagt DGI Storstrømmens vedtægter. Foreningens formål er at fremme skydesporten for pistol og riffel, samt den individuelle skyttes trivsel og sundhed.</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/bliv-medlem" class="btn-primary">Bliv en del af fællesskabet</a>
+          <a href="/vedtaegter" class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 px-5 py-3 text-sm" style="border: 1px solid rgba(0,0,0,0.15); color: var(--color-primary-600);">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Læs vedtægter
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

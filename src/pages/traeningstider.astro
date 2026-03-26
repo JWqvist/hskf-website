@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import schedule from '../data/training.json';
+
+function getDisciplineClass(d: string) {
+  const map: Record<string, string> = {
+    'Pistol': 'tag-pistol',
+    'Riffel': 'tag-riffel',
+  };
+  return map[d] || 'tag-mixed';
+}
+---
+
+<BaseLayout title="Træningstider" description="Se ugentlige træningstider for HSKF – pistol og riffel på begge baner.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-12">
+        <h1 class="section-title">Træningstider</h1>
+        <p class="section-subtitle">Ugentlig oversigt over træningstider på begge baner. Alle er velkomne – henvend dig til en instruktør ved ankomst.</p>
+      </div>
+
+      <!-- Weekly grid -->
+      <div class="space-y-3 mb-12">
+        {schedule.map((day) => (
+          <div class={`card border border-gray-100 dark:border-gray-800 overflow-hidden ${day.sessions.length === 0 ? 'opacity-60' : ''}`}>
+            <div class="flex flex-col sm:flex-row">
+              <!-- Day label -->
+              <div class={`sm:w-36 flex-shrink-0 px-5 py-4 flex items-center justify-start sm:justify-center font-bold text-base ${day.sessions.length > 0 ? 'text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500'}`} style={day.sessions.length > 0 ? 'background-color: var(--color-primary-500);' : ''}>
+                {day.day}
+              </div>
+
+              <!-- Sessions -->
+              <div class="flex-1 px-5 py-4">
+                {day.sessions.length === 0 ? (
+                  <span class="text-sm text-gray-400 dark:text-gray-500 italic">Ingen planlagt træning</span>
+                ) : (
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {day.sessions.map((session) => (
+                      <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <div class="flex-1">
+                          <div class="flex flex-wrap items-center gap-2 mb-1">
+                            <span class="font-semibold text-gray-900 dark:text-white text-sm">{session.time}</span>
+                            <span class={`tag text-xs ${getDisciplineClass(session.discipline)}`}>{session.discipline}</span>
+                          </div>
+                          <div class="flex items-center gap-1.5 mb-1">
+                            <svg class="w-3.5 h-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium capitalize">{session.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}</span>
+                          </div>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">{session.notes}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+
+      <!-- Note -->
+      <div class="p-5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+          </svg>
+          <div>
+            <h4 class="font-semibold text-amber-900 dark:text-amber-200 mb-1">OBS: Ændringer kan forekomme</h4>
+            <p class="text-sm text-amber-800 dark:text-amber-300">Træningstider kan ændres ved helligdage, stævner eller sæsonstart/-slut. Følg med på siden eller kontakt <a href="mailto:kontakt@hskf.dk" class="underline font-medium">kontakt@hskf.dk</a> for aktuelle tider.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

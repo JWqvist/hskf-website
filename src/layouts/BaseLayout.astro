@@ -1,0 +1,277 @@
+---
+import '../styles/global.css';
+import notices from '../data/notices.json';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Holmegaard Skytteforening – Skydeklub siden 2013' } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Pass notices to client as JSON
+const noticesJson = JSON.stringify(notices);
+---
+
+<!DOCTYPE html>
+<html lang="da" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} – HSKF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script is:inline>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center shadow-md transition-colors duration-200" style="background-color: var(--color-primary-500);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/>
+              <circle cx="12" cy="12" r="1.5" fill="white"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="font-bold text-gray-900 dark:text-white text-sm">HSKF</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Holmegaard Skytteforening</div>
+          </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center gap-6">
+          <a href="/" class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>Hjem</a>
+          <a href="/kalender" class={`nav-link ${currentPath.startsWith('/kalender') ? 'active' : ''}`}>Kalender</a>
+          <a href="/afdelinger" class={`nav-link ${currentPath.startsWith('/afdelinger') ? 'active' : ''}`}>Afdelinger</a>
+          <a href="/traeningstider" class={`nav-link ${currentPath.startsWith('/traeningstider') ? 'active' : ''}`}>Træningstider</a>
+          <a href="/om-os" class={`nav-link ${currentPath.startsWith('/om-os') ? 'active' : ''}`}>Om os</a>
+          <a href="/bliv-medlem" class={`nav-link ${currentPath.startsWith('/bliv-medlem') ? 'active' : ''}`}>Bliv medlem</a>
+          <a href="/kontakt" class={`nav-link ${currentPath.startsWith('/kontakt') ? 'active' : ''}`}>Kontakt</a>
+        </div>
+
+        <!-- Right side: Facebook + dark mode + mobile menu -->
+        <div class="flex items-center gap-3">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/holmegaardskytteforening" target="_blank" rel="noopener noreferrer" aria-label="Følg os på Facebook" class="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <!-- Dark mode toggle -->
+          <button id="theme-toggle" aria-label="Skift farvetema" class="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+            <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+            </svg>
+            <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" aria-label="Åbn menu" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200">
+            <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+      <div class="px-4 py-4 flex flex-col gap-1">
+        <a href="/" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath === '/' ? 'text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath === '/' ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Hjem</a>
+        <a href="/kalender" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/kalender') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/kalender') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Kalender</a>
+        <a href="/afdelinger" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/afdelinger') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/afdelinger') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Afdelinger</a>
+        <a href="/traeningstider" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/traeningstider') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/traeningstider') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Træningstider</a>
+        <a href="/om-os" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/om-os') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/om-os') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Om os</a>
+        <a href="/bliv-medlem" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/bliv-medlem') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/bliv-medlem') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Bliv medlem</a>
+        <a href="/kontakt" class={`block px-3 py-2.5 rounded-lg font-medium transition-colors duration-200 ${currentPath.startsWith('/kontakt') ? '' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'}`} style={currentPath.startsWith('/kontakt') ? 'background-color: color-mix(in srgb, var(--color-primary-500) 15%, transparent); color: var(--color-primary-600);' : ''}>Kontakt</a>
+        <div class="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
+          <a href="/bliv-medlem" class="btn-primary w-full justify-center text-sm">Book prøveskydning</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <!-- Notice banner -->
+  <div id="notice-banner" class="hidden">
+    <div id="notice-inner" class="px-4 py-3 flex items-center justify-between gap-4 text-sm font-medium">
+      <div class="flex items-center gap-3 flex-1">
+        <svg id="notice-icon" class="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span id="notice-message"></span>
+        <a id="notice-link" href="#" class="underline font-semibold hidden"></a>
+      </div>
+      <button id="notice-close" aria-label="Luk besked" class="flex-shrink-0 opacity-70 hover:opacity-100 transition-opacity">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ noticesJson }}>
+    (function() {
+      var notices = JSON.parse(noticesJson);
+      var today = new Date();
+      today.setHours(0,0,0,0);
+
+      var active = null;
+      for (var i = 0; i < notices.length; i++) {
+        var n = notices[i];
+        var from = new Date(n.from);
+        var to = new Date(n.to);
+        if (today >= from && today <= to) { active = n; break; }
+      }
+
+      if (!active) return;
+      if (sessionStorage.getItem('notice-dismissed-' + active.id)) return;
+
+      var banner = document.getElementById('notice-banner');
+      var inner = document.getElementById('notice-inner');
+      var msg = document.getElementById('notice-message');
+      var link = document.getElementById('notice-link');
+      var icon = document.getElementById('notice-icon');
+      var closeBtn = document.getElementById('notice-close');
+
+      var colors = {
+        info:    { bg: '#eff6ff', border: '#bfdbfe', text: '#1e40af', icon: '#3b82f6' },
+        warning: { bg: '#fffbeb', border: '#fde68a', text: '#92400e', icon: '#f59e0b' },
+        urgent:  { bg: '#fff1f2', border: '#fecdd3', text: '#9f1239', icon: '#f43f5e' },
+      };
+      var c = colors[active.type] || colors.info;
+
+      banner.style.backgroundColor = c.bg;
+      banner.style.borderBottom = '1px solid ' + c.border;
+      inner.style.color = c.text;
+      icon.style.color = c.icon;
+
+      msg.textContent = active.message;
+
+      if (active.link) {
+        link.href = active.link.href;
+        link.textContent = active.link.label;
+        link.style.color = c.text;
+        link.classList.remove('hidden');
+      }
+
+      banner.classList.remove('hidden');
+
+      closeBtn.addEventListener('click', function() {
+        banner.classList.add('hidden');
+        sessionStorage.setItem('notice-dismissed-' + active.id, '1');
+      });
+    })();
+  </script>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 dark:bg-gray-950 text-gray-300 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: var(--color-primary-500);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/>
+                <circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/>
+                <circle cx="12" cy="12" r="1.5" fill="white"/>
+              </svg>
+            </div>
+            <span class="font-bold text-white">HSKF</span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed">Holmegaard Skytteforening – en aktiv skydeklub med stærke traditioner og godt fællesskab siden 2013.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-4">Hurtige links</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/kalender" class="hover:text-white transition-colors" style="color: inherit;">Kalender</a></li>
+            <li><a href="/traeningstider" class="hover:text-white transition-colors" style="color: inherit;">Træningstider</a></li>
+            <li><a href="/bliv-medlem" class="hover:text-white transition-colors" style="color: inherit;">Bliv medlem</a></li>
+            <li><a href="/kontakt" class="hover:text-white transition-colors" style="color: inherit;">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-white mb-4">Kontakt</h3>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-primary-400);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <a href="mailto:kontakt@hskf.dk" class="hover:text-white transition-colors">kontakt@hskf.dk</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-400);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <span class="text-gray-400">Lundebakkevej 18C, 4684 Holmegaard</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-10 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <span>© {new Date().getFullYear()} Holmegaard Skytteforening. Alle rettigheder forbeholdes.</span>
+        <span>Medlem af Dansk Sportsskytte Forbund (DSF)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    themeToggle?.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      const isOpen = !mobileMenu?.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu?.classList.add('hidden');
+        iconMenu?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      } else {
+        mobileMenu?.classList.remove('hidden');
+        iconMenu?.classList.add('hidden');
+        iconClose?.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
