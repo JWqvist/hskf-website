@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HSKF//Holmegaard Skytteforening//DA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:hskf-0@hskf.dk
+DTSTART:20250925T183000
+DTEND:20250925T203000
+SUMMARY:Indendørs sæsonstart 2025
+DESCRIPTION:Torsdag d. 25. september 2025 åbnede vi vintersæsonen på indendørsbanen i Fensmark. Riffelskytter kl. 18:30\, pistolskytter kl. 19:30.
+LOCATION:Villavej 2\, 4684 Holmegaard
+END:VEVENT
+END:VCALENDAR

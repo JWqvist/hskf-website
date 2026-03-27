@@ -83,8 +83,7 @@ const past = allEvents
               </div>
               <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{event.description}</p>
               <a
-                href={`data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//HSKF//Holmegaard Skytteforening//DA%0ABEGIN:VEVENT%0AUID:hskf-${event.id}@hskf.dk%0ADTSTART:${event.date.replace(/-/g,'')}T${event.time.replace(':','')}00%0ADTEND:${event.date.replace(/-/g,'')}T${String(parseInt(event.time.split(':')[0])+2).padStart(2,'0')}${event.time.split(':')[1]}00%0ASUMMARY:${encodeURIComponent(event.title)}%0ADESCRIPTION:${encodeURIComponent(event.description)}%0ALOCATION:${event.location === 'toksvær' ? 'Lundebakkevej 18C, 4684 Holmegaard' : 'Villavej 2, 4684 Holmegaard'}%0AEND:VEVENT%0AEND:VCALENDAR`}
-                download={`hskf-${event.id}.ics`}
+                href={`webcal://hskf-website.pages.dev/ics/event-${event.id}.ics`}
                 class="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:opacity-80"
                 style="color: var(--color-primary-500);"
               >
