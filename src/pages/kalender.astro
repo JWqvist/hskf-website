@@ -81,7 +81,18 @@ const past = allEvents
                 </svg>
                 {formatDate(event.date)} · kl. {event.time}
               </div>
-              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{event.description}</p>
+              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{event.description}</p>
+              <a
+                href={`data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//HSKF//Holmegaard Skytteforening//DA%0ABEGIN:VEVENT%0AUID:hskf-${event.id}@hskf.dk%0ADTSTART:${event.date.replace(/-/g,'')}T${event.time.replace(':','')}00%0ADTEND:${event.date.replace(/-/g,'')}T${String(parseInt(event.time.split(':')[0])+2).padStart(2,'0')}${event.time.split(':')[1]}00%0ASUMMARY:${encodeURIComponent(event.title)}%0ADESCRIPTION:${encodeURIComponent(event.description)}%0ALOCATION:${event.location === 'toksvær' ? 'Lundebakkevej 18C, 4684 Holmegaard' : 'Villavej 2, 4684 Holmegaard'}%0AEND:VEVENT%0AEND:VCALENDAR`}
+                download={`hskf-${event.id}.ics`}
+                class="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:opacity-80"
+                style="color: var(--color-primary-500);"
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Tilføj til kalender
+              </a>
             </div>
           </div>
         ))}

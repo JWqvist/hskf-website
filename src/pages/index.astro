@@ -23,7 +23,7 @@ function getDisciplineClass(d: string) {
 }
 ---
 
-<BaseLayout title="Hjem" description="Holmegaard Skytteforening – Skytteforeningen hvor fællesskab og skydning er i fokus. Udendørs baner i Toksvær og indendørs bane i Holmegaard.">
+<BaseLayout title="Hjem" description="Holmegaard Skytteforening – Skytteforeningen hvor fællesskab og skydning er i fokus. Udendørs baner i Toksværd og indendørs bane i Holmegaard.">
 
   <!-- Hero -->
   <section class="relative overflow-hidden min-h-screen flex items-center" style="min-height: 85vh;">
@@ -87,9 +87,9 @@ function getDisciplineClass(d: string) {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Udendørs baner – Toksvær</h3>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Udendørs baner – Toksværd</h3>
           <p class="text-sm font-medium mb-3" style="color: var(--color-primary-500);">Udendørs · Riffel &amp; Pistol</p>
-          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Vores udendørs skydeanlæg i Toksvær rummer baner til både riffel og pistol. Åben i sommersæsonen fra 9. april til 25. september.</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Vores udendørs skydeanlæg i Toksværd rummer baner til både riffel og pistol. Åben i sommersæsonen fra 9. april til 25. september.</p>
           <a href="/afdelinger" class="inline-flex items-center gap-1 mt-4 text-sm font-semibold transition-colors" style="color: var(--color-primary-500);">
             Se banen <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -170,7 +170,7 @@ function getDisciplineClass(d: string) {
             <div class="flex items-start justify-between mb-3">
               <span class={`tag ${getDisciplineClass(event.discipline)}`}>{event.discipline}</span>
               <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                {event.location === 'toksvær' ? 'Toksvær' : 'Holmegaard'}
+                {event.location === 'toksvær' ? 'Toksværd' : 'Holmegaard'}
               </span>
             </div>
             <h3 class="font-bold text-gray-900 dark:text-white mb-1.5 text-lg leading-snug">{event.title}</h3>
