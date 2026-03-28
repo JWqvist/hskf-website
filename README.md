@@ -1,28 +1,28 @@
 # HSKF.dk — Holmegaard Skytteforening
 
-Foreningens hjemmeside bygget med [Astro](https://astro.build) og [Tailwind CSS v4](https://tailwindcss.com).
+The association's website built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com).
 
-## 🚀 Kom i gang
+## 🚀 Getting Started
 
 ```bash
 npm install
-npm run dev       # Start lokal udviklingsserver
-npm run build     # Byg til produktion (kører automatisk ICS-generering)
-npm run preview   # Forhåndsvisning af produktionsbuild
+npm run dev       # Start local development server
+npm run build     # Build for production (automatically generates ICS files)
+npm run preview   # Preview production build locally
 ```
 
-## 📁 Projektstruktur
+## 📁 Project Structure
 
 ```
 /
 ├── public/
-│   ├── ics/              # Auto-genererede kalender-filer (.ics) — redigér ikke manuelt
-│   ├── images/           # Billeder og assets
-│   └── vedtaegter.pdf    # Foreningens vedtægter
+│   ├── ics/              # Auto-generated calendar files (.ics) — do not edit manually
+│   ├── images/           # Images and assets
+│   └── vedtaegter.pdf    # Association bylaws (PDF)
 ├── scripts/
-│   └── generate-ics.mjs  # Kører automatisk før build – genererer .ics filer fra events.json
+│   └── generate-ics.mjs  # Runs automatically before build — generates .ics from events.json
 ├── src/
-│   ├── data/             # ← Her redigeres indhold (JSON)
+│   ├── data/             # ← Edit content here (JSON)
 │   │   ├── events.json
 │   │   ├── notices.json
 │   │   └── training.json
@@ -33,15 +33,15 @@ npm run preview   # Forhåndsvisning af produktionsbuild
 
 ---
 
-## 📝 Indhold — sådan opdateres det
+## 📝 Content — How to Update
 
-Alt siteindhold styres via tre JSON-filer i `src/data/`. Ingen kode skal ændres for at opdatere events, beskeder eller træningstider.
+All site content is managed via three JSON files in `src/data/`. No code changes are required to update events, notices, or training schedules.
 
 ---
 
-### 📅 `events.json` — Begivenheder og kalender
+### 📅 `events.json` — Events & Calendar
 
-Vises på **Kalender**-siden. Hvert event genererer automatisk en `.ics` fil (Apple Calendar, Google Calendar, Outlook) ved næste build.
+Displayed on the **Kalender** page. Each event automatically generates a `.ics` file (compatible with Apple Calendar, Google Calendar, and Outlook) on the next build.
 
 ```json
 [
@@ -52,60 +52,60 @@ Vises på **Kalender**-siden. Hvert event genererer automatisk en `.ics` fil (Ap
     "time": "18:30",
     "location": "toksvær",
     "disciplines": ["Riffel", "Pistol"],
-    "description": "Beskrivelse af eventet. Vises på kalender-siden."
+    "description": "Description of the event. Shown on the calendar page."
   }
 ]
 ```
 
-| Felt | Type | Beskrivelse |
-|------|------|-------------|
-| `id` | `number` | Unikt heltal — øg med 1 for hvert nyt event. Bruges til `.ics` filnavn. |
-| `title` | `string` | Eventets navn |
-| `date` | `string` | Dato i format `YYYY-MM-DD` |
-| `time` | `string` | Starttidspunkt i format `HH:MM` (f.eks. `"18:30"`) |
-| `location` | `string` | Enten `"toksvær"` (Lundebakkevej 18C) eller `"holmegaard"` (Villavej 2) |
-| `disciplines` | `string[]` | Liste over discipliner, f.eks. `["Riffel", "Pistol"]`. Tom liste `[]` hvis ikke relevant. |
-| `description` | `string` | Fritekst-beskrivelse af eventet |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `number` | Unique integer — increment by 1 for each new event. Used as the `.ics` filename. |
+| `title` | `string` | Name of the event |
+| `date` | `string` | Date in `YYYY-MM-DD` format |
+| `time` | `string` | Start time in `HH:MM` format (e.g. `"18:30"`) |
+| `location` | `string` | Either `"toksvær"` (Lundebakkevej 18C) or `"holmegaard"` (Villavej 2) |
+| `disciplines` | `string[]` | List of disciplines, e.g. `["Riffel", "Pistol"]`. Use an empty array `[]` if not applicable. |
+| `description` | `string` | Free-text description of the event |
 
-> **Bemærk:** Når et event tilføjes, kører `scripts/generate-ics.mjs` automatisk ved næste `npm run build` og opretter `/public/ics/event-{id}.ics`.
+> **Note:** When an event is added, `scripts/generate-ics.mjs` runs automatically on the next `npm run build` and creates `/public/ics/event-{id}.ics`.
 
 ---
 
-### 📢 `notices.json` — Notifikationsbanner
+### 📢 `notices.json` — Notification Banner
 
-Vises som et banner øverst på sitet i en given tidsperiode. Bruges til vigtige beskeder som kontingent-deadlines, aflysninger eller andet tidskritisk.
+Displayed as a banner at the top of the site within a given date range. Use for important time-sensitive messages such as membership deadlines, cancellations, or announcements.
 
 ```json
 [
   {
     "id": "kontingent-2026",
-    "message": "Husk at betale kontingent for 2026 – deadline 1. april.",
+    "message": "Remember to pay your membership fee for 2026 – deadline April 1st.",
     "type": "warning",
     "from": "2026-03-01",
     "to": "2026-04-01",
-    "link": { "label": "Kontakt bestyrelsen", "href": "mailto:kontakt@hskf.dk" }
+    "link": { "label": "Contact the board", "href": "mailto:kontakt@hskf.dk" }
   }
 ]
 ```
 
-| Felt | Type | Beskrivelse |
-|------|------|-------------|
-| `id` | `string` | Unikt ID (bruges til at vise beskeden én gang per bruger) |
-| `message` | `string` | Beskedteksten der vises i banneret |
-| `type` | `string` | Udseende/farve: `"info"` (blå), `"warning"` (gul), `"error"` (rød), `"success"` (grøn) |
-| `from` | `string` | Startdato i format `YYYY-MM-DD` — banneret vises fra denne dato |
-| `to` | `string` | Slutdato i format `YYYY-MM-DD` — banneret skjules efter denne dato |
-| `link` | `object` \| `null` | Valgfrit link i banneret. Udelad feltet eller sæt `null` for intet link. |
-| `link.label` | `string` | Linktekst |
-| `link.href` | `string` | URL eller `mailto:`-adresse |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique ID (used to show the notice once per user via local storage) |
+| `message` | `string` | The message text displayed in the banner |
+| `type` | `string` | Visual style: `"info"` (blue), `"warning"` (yellow), `"error"` (red), `"success"` (green) |
+| `from` | `string` | Start date in `YYYY-MM-DD` format — banner becomes visible from this date |
+| `to` | `string` | End date in `YYYY-MM-DD` format — banner is hidden after this date |
+| `link` | `object` \| `null` | Optional link shown inside the banner. Omit the field or set to `null` for no link. |
+| `link.label` | `string` | Link text |
+| `link.href` | `string` | URL or `mailto:` address |
 
-> **Tip:** Bannervisning styres automatisk af `from`/`to` datoerne. Du behøver ikke slette gamle notices — de skjules af sig selv.
+> **Tip:** Banner visibility is controlled automatically by the `from`/`to` dates. You do not need to delete old notices — they hide themselves.
 
 ---
 
-### 🏋️ `training.json` — Træningstider
+### 🏋️ `training.json` — Training Schedule
 
-Vises på **Bliv medlem**-siden og andre relevante steder. Definerer ugentlige træningstider per ugedag.
+Displayed on the **Bliv medlem** page and other relevant pages. Defines weekly training sessions per day of the week.
 
 ```json
 [
@@ -117,38 +117,38 @@ Vises på **Bliv medlem**-siden og andre relevante steder. Definerer ugentlige t
         "time": "Fra kl. 18:30",
         "location": "toksvær",
         "discipline": "Riffel",
-        "notes": "Sommersæson: 9. april – 25. september. Udendørs på 25m banen i Toksværd."
+        "notes": "Summer season: April 9 – September 25. Outdoor on the 25m range in Toksværd."
       }
     ]
   }
 ]
 ```
 
-| Felt | Type | Beskrivelse |
-|------|------|-------------|
-| `day` | `string` | Ugedag på dansk (f.eks. `"Torsdag"`) |
-| `dayEn` | `string` | Ugedag på engelsk (f.eks. `"Thursday"`) — bruges internt til sortering |
-| `sessions` | `array` | Liste over træningssessioner denne dag. Tom liste `[]` hvis ingen træning. |
-| `sessions[].time` | `string` | Tidspunkt, f.eks. `"Fra kl. 18:30"` |
-| `sessions[].location` | `string` | Enten `"toksvær"` eller `"holmegaard"` |
-| `sessions[].discipline` | `string` | F.eks. `"Riffel"` eller `"Pistol"` |
-| `sessions[].notes` | `string` | Yderligere info, f.eks. sæsonperiode eller særlige regler |
+| Field | Type | Description |
+|-------|------|-------------|
+| `day` | `string` | Day of the week in Danish (e.g. `"Torsdag"`) |
+| `dayEn` | `string` | Day of the week in English (e.g. `"Thursday"`) — used internally for sorting |
+| `sessions` | `array` | List of training sessions for this day. Use an empty array `[]` if no training. |
+| `sessions[].time` | `string` | Time slot, e.g. `"Fra kl. 18:30"` |
+| `sessions[].location` | `string` | Either `"toksvær"` or `"holmegaard"` |
+| `sessions[].discipline` | `string` | E.g. `"Riffel"` or `"Pistol"` |
+| `sessions[].notes` | `string` | Additional info such as season period or special rules |
 
-> **Bemærk:** Alle syv ugedage skal være til stede i arrayet (selv uden sessions). Rækkefølgen i filen er den rækkefølge de vises på sitet.
+> **Note:** All seven days of the week must be present in the array (even with empty sessions). The order in the file determines the display order on the site.
 
 ---
 
-## 🌿 Git-workflow
+## 🌿 Git Workflow
 
 ```
-main  ← Produktion (hskf-website.pages.dev) — kræver PR + godkendelse
-dev   ← Staging/preview — push frit
+main  ← Production (hskf-website.pages.dev) — requires PR + approval
+dev   ← Staging/preview — push freely
 ```
 
-Alle ændringer laves på `dev`. Når klar til produktion: opret PR fra `dev` → `main`.
+All changes are made on `dev`. When ready for production, open a PR from `dev` → `main`.
 
-## 🔧 Deploy
+## 🔧 Deployment
 
-Cloudflare Pages deployer automatisk:
-- `dev` → preview URL ved hvert push
-- `main` → <https://hskf-website.pages.dev> ved merge
+Cloudflare Pages deploys automatically:
+- `dev` → preview URL on every push
+- `main` → <https://hskf-website.pages.dev> on merge
