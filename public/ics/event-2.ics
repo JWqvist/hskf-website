@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HSKF//Holmegaard Skytteforening//DA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:hskf-2@hskf.dk
+DTSTART:20260409T183000
+DTEND:20260409T203000
+SUMMARY:Udendørs sæsonstart 2026
+DESCRIPTION:Torsdag d. 9. april 2026 åbner vi udendørsbanen i Toksværd for sommersæsonen. Alle skytter – riffel og pistol – er velkomne fra kl. 18:30.
+LOCATION:Lundebakkevej 18C\, 4684 Holmegaard
+END:VEVENT
+END:VCALENDAR
