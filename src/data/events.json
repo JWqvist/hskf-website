@@ -25,5 +25,14 @@
     "location": "toksvær",
     "disciplines": ["Riffel", "Pistol"],
     "description": "Torsdag d. 9. april 2026 åbner vi udendørsbanen i Toksværd for sommersæsonen. Alle skytter – riffel og pistol – er velkomne fra kl. 18:30."
+  },
+  {
+    "id": 3,
+    "title": "Pistoltræning med instruktør",
+    "date": "2026-04-25",
+    "time": "09:00",
+    "location": "toksvær",
+    "disciplines": ["Pistol"],
+    "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne."
   }
 ]
