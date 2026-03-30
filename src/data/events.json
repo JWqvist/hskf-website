@@ -28,6 +28,15 @@
   },
   {
     "id": 3,
+    "title": "Sydsjællands Soldaterforenings familiedag",
+    "date": "2026-05-03",
+    "time": "09:00",
+    "location": "toksvær",
+    "disciplines": [],
+    "description": "Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien."
+  },
+  {
+    "id": 4,
     "title": "Pistoltræning med instruktør",
     "date": "2026-04-25",
     "time": "09:00",
