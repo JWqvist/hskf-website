@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HSKF//Holmegaard Skytteforening//DA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:hskf-3@hskf.dk
+DTSTART:20260503T090000
+DTEND:20260503T110000
+SUMMARY:Sydsjællands Soldaterforenings familiedag
+DESCRIPTION:Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien.
+LOCATION:Lundebakkevej 18C\, 4684 Holmegaard
+END:VEVENT
+END:VCALENDAR
