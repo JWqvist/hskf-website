@@ -38,7 +38,6 @@ for (const event of events) {
     'VERSION:2.0',
     'PRODID:-//HSKF//Holmegaard Skytteforening//DA',
     'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
     'BEGIN:VEVENT',
     `UID:hskf-${event.id}@hskf.dk`,
     `DTSTAMP:${now}`,
