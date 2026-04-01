@@ -4,12 +4,12 @@ PRODID:-//HSKF//Holmegaard Skytteforening//DA
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:hskf-3@hskf.dk
+UID:hskf-5@hskf.dk
 DTSTAMP:20260401T230104Z
-DTSTART:20260503T090000Z
-DTEND:20260503T110000Z
-SUMMARY:Sydsjællands Soldaterforenings familiedag
-DESCRIPTION:Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien.
+DTSTART:20260815T140000Z
+DTEND:20260815T160000Z
+SUMMARY:Test Event – SLET MIG
+DESCRIPTION:Dette er et testevent for ICS og visning. SLET MIG efter test.
 LOCATION:Lundebakkevej 18C\, 4684 Holmegaard
 ORGANIZER;CN=Holmegaard Skytteforening:mailto:kontakt@hskf.dk
 STATUS:CONFIRMED

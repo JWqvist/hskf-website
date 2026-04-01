@@ -22,6 +22,8 @@ const LOCATIONS = {
   holmegaard: 'Villavej 2\\, 4684 Holmegaard',
 };
 
+const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
 for (const event of events) {
   const dateStr = event.date.replace(/-/g, '');
   const [hour, min] = event.time.split(':');
@@ -39,6 +41,7 @@ for (const event of events) {
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
     `UID:hskf-${event.id}@hskf.dk`,
+    `DTSTAMP:${now}`,
     `DTSTART:${dateStr}T${timeStart}Z`,
     `DTEND:${dateStr}T${timeEnd}Z`,
     `SUMMARY:${title}`,
