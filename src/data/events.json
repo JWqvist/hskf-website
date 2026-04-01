@@ -42,16 +42,6 @@
     "time": "09:00",
     "location": "toksvær",
     "disciplines": ["Pistol"],
-    "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne.",
-    "link": { "label": "Test Form", "href": "https://forms.gle/iJ48awLB3oiCtXZq5" }
-  },
-  {
-    "id": 5,
-    "title": "Test Event – SLET MIG",
-    "date": "2026-08-15",
-    "time": "14:00",
-    "location": "toksvær",
-    "disciplines": ["Test"],
-    "description": "Dette er et testevent for ICS og visning. SLET MIG efter test."
+    "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne."
   }
 ]
