@@ -66,6 +66,9 @@ Displayed on the **Kalender** page. Each event automatically generates a `.ics` 
 | `location` | `string` | Either `"toksvær"` (Lundebakkevej 18C) or `"holmegaard"` (Villavej 2) |
 | `disciplines` | `string[]` | List of disciplines, e.g. `["Riffel", "Pistol"]`. Use an empty array `[]` if not applicable. |
 | `description` | `string` | Free-text description of the event |
+| `link` | `object` \| `null` | Optional action button on the event card. Omit or set to `null` for no button. |
+| `link.label` | `string` | Button text, e.g. `"Tilmeld dig"`, `"Læs mere"`, `"Book plads"` |
+| `link.href` | `string` | URL or `mailto:` address the button links to |
 
 > **Note:** When an event is added, `scripts/generate-ics.mjs` runs automatically on the next `npm run build` and creates `/public/ics/event-{id}.ics`.
 

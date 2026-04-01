@@ -22,6 +22,8 @@ const LOCATIONS = {
   holmegaard: 'Villavej 2\\, 4684 Holmegaard',
 };
 
+const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
 for (const event of events) {
   const dateStr = event.date.replace(/-/g, '');
   const [hour, min] = event.time.split(':');
@@ -36,14 +38,22 @@ for (const event of events) {
     'VERSION:2.0',
     'PRODID:-//HSKF//Holmegaard Skytteforening//DA',
     'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
     'BEGIN:VEVENT',
     `UID:hskf-${event.id}@hskf.dk`,
-    `DTSTART:${dateStr}T${timeStart}`,
-    `DTEND:${dateStr}T${timeEnd}`,
+    `DTSTAMP:${now}`,
+    `DTSTART:${dateStr}T${timeStart}Z`,
+    `DTEND:${dateStr}T${timeEnd}Z`,
     `SUMMARY:${title}`,
     `DESCRIPTION:${desc}`,
     `LOCATION:${location}`,
+    `ORGANIZER;CN=Holmegaard Skytteforening:mailto:kontakt@hskf.dk`,
+    'STATUS:CONFIRMED',
+    'SEQUENCE:0',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT15M',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Reminder',
+    'END:VALARM',
     'END:VEVENT',
     'END:VCALENDAR',
   ].join('\r\n');
