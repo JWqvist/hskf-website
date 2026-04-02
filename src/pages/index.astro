@@ -168,9 +168,6 @@ function getDisciplineClass(d: string) {
         {latestEvents.map((event) => (
           <a href={`/kalender#event-${event.id}`} class="card p-6 border border-gray-100 dark:border-gray-800 block hover:border-gray-300 dark:hover:border-gray-600 transition-colors cursor-pointer">
             <div class="flex items-start justify-between mb-3">
-              {event.disciplines && event.disciplines.map((d: string) => (
-                <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
-              ))}
               <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
                 {event.location === 'toksvær' ? 'Toksværd' : 'Holmegaard'}
               </span>
@@ -183,6 +180,13 @@ function getDisciplineClass(d: string) {
               {formatDate(event.date)} · {event.time}
             </div>
             <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed overflow-hidden" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{event.description}</p>
+            {event.disciplines && event.disciplines.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                {event.disciplines.map((d: string) => (
+                  <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
+                ))}
+              </div>
+            )}
           </a>
         ))}
       </div>
