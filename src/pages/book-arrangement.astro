@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Book skydeoplevelse – Firmatur, polterabend & gruppeevents | HSKF"
+  description="Book en uforglemmelig skydeoplevelse i Holmegaard. Vi tilbyder firmaarrangementer, polterabender og gruppeevents med riffel og pistol nær Næstved og Vordingborg."
+>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden flex items-center" style="min-height: 60vh;">
+    <div class="absolute inset-0" style="background-image: url('/images/IMG_3247-scaled.jpg'); background-size: cover; background-position: center;"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom right, rgba(3,7,18,0.85), rgba(17,24,39,0.78), rgba(84,10,20,0.72));"></div>
+    <div class="absolute pointer-events-none" style="top: 25%; right: 25%; width: 24rem; height: 24rem; background: rgba(196,30,58,0.15); border-radius: 9999px; filter: blur(64px);"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6" style="background: rgba(196,30,58,0.2); border: 1px solid rgba(196,30,58,0.3); color: #fca5a5;">
+          <div class="w-2 h-2 rounded-full" style="background-color: #f87171;"></div>
+          Sydsjælland · Næstved-området · Holmegaard
+        </div>
+        <h1 class="font-extrabold text-white mb-6 leading-tight tracking-tight" style="font-size: clamp(2rem, 6vw, 3.5rem);">
+          Book en skydeoplevelse
+        </h1>
+        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-xl">
+          Uforglemmelig firmatur, polterabend eller gruppedag med riffel og pistol i Holmegaard nær Næstved og Vordingborg.
+        </p>
+        <a
+          href="mailto:kontakt@hskf.dk?subject=Bookingforesp%C3%B8rgsel%20%E2%80%93%20Skydeoplevelse&body=Hej%20HSKF%2C%0A%0AJeg%20vil%20gerne%20booke%20en%20skydeoplevelse%20for%20vores%20gruppe.%0A%0AType%20arrangement%3A%20%0AAntal%20deltagere%3A%20%0A%C3%98nsket%20dato%3A%20%0AKontaktinfo%3A%20"
+          class="btn-primary"
+          style="font-size: 1rem; padding: 0.875rem 2rem;"
+        >
+          Send bookingforespørgsel
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hvad tilbyder vi -->
+  <section class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title mb-4">Skydeoplevelse for grupper i Sydsjælland</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mb-12 leading-relaxed">
+        Holmegaard Skytteforening (HSKF) tilbyder professionelle skydeoplevelser for grupper i Holmegaard-området.
+        Vores erfarne instruktører guider jer sikkert igennem pistol- og riffelskydning på vores baner i
+        <strong>Toksværd</strong> (udendørs) og <strong>Fensmark</strong> (indendørs) — begge nær <strong>Næstved</strong>,
+        Vordingborg og resten af Sydsjælland.
+      </p>
+
+      <!-- Tre kort -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Firmatur -->
+        <div class="card p-6 flex flex-col">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(196,30,58,0.1);">
+            <svg class="w-6 h-6" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Firmatur & teambuilding</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed flex-1">
+            Giv jeres team en anderledes dag med skydesport. Perfekt til firmaarrangementer i
+            Sydsjælland — vi sørger for instrukktion, udstyr og en sjov, tryg oplevelse for alle.
+          </p>
+        </div>
+
+        <!-- Polterabend -->
+        <div class="card p-6 flex flex-col">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(196,30,58,0.1);">
+            <svg class="w-6 h-6" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Polterabend & EVJF</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed flex-1">
+            En mindeværdig pistolskydning til polterabend nær Næstved. Uanset om I er vant til
+            skydesport eller helt grønne, skaber vi en sjov og tryg oplevelse for hele gruppen.
+          </p>
+        </div>
+
+        <!-- Familiedag -->
+        <div class="card p-6 flex flex-col">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(196,30,58,0.1);">
+            <svg class="w-6 h-6" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Familiedag & fødselsdage</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed flex-1">
+            Skydesport er for hele familien. Vi tilbyder gruppeevents hvor både unge og voksne
+            prøver kræfter med riffel og pistol under kyndig vejledning i Holmegaard.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Praktisk info -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title mb-10">Praktisk information</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="card p-6 text-center">
+          <div class="text-3xl font-extrabold mb-2" style="color: var(--color-primary-500);">2–20</div>
+          <div class="font-semibold text-gray-900 dark:text-white mb-1">Antal deltagere</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Min. 2, max ca. 20 deltagere pr. session</p>
+        </div>
+
+        <div class="card p-6 text-center">
+          <div class="text-3xl font-extrabold mb-2" style="color: var(--color-primary-500);">~2t</div>
+          <div class="font-semibold text-gray-900 dark:text-white mb-1">Varighed</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Arrangementet varer typisk ca. 2 timer</p>
+        </div>
+
+        <div class="card p-6 text-center">
+          <div class="text-3xl font-extrabold mb-2" style="color: var(--color-primary-500);">✓</div>
+          <div class="font-semibold text-gray-900 dark:text-white mb-1">Udstyr medfølger</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Rifler, pistoler, ammunition og sikkerhedsudstyr er inkluderet</p>
+        </div>
+
+        <div class="card p-6 text-center">
+          <div class="text-3xl font-extrabold mb-2" style="color: var(--color-primary-500);">0</div>
+          <div class="font-semibold text-gray-900 dark:text-white mb-1">Erfaring kræves</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Vores instruktører guider alle fra nybegyndere til øvede</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lokation -->
+  <section class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="section-title mb-4">Vores lokationer</h2>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+            HSKF har baner på to lokationer i Holmegaard-området, begge med nem adgang fra
+            <strong>Næstved</strong>, <strong>Vordingborg</strong> og resten af <strong>Sydsjælland</strong>:
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background-color: var(--color-primary-500);">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">Toksværd – Udendørs baner</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Riffel og pistol på frisk luft. Primær bane i sommerhalvåret.</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background-color: var(--color-primary-500);">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 dark:text-white">Fensmark – Indendørs bane</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Riffel og pistol indendørs. Primær bane i vinterhalvåret.</div>
+              </div>
+            </li>
+          </ul>
+          <a href="/afdelinger" class="inline-flex items-center gap-1 mt-4 text-sm font-semibold transition-colors" style="color: var(--color-primary-500);">
+            Se begge afdelinger i detaljer
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- CTA box -->
+        <div class="card p-8 border-2" style="border-color: var(--color-primary-500);">
+          <h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Klar til at booke?</h3>
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+            Send os en forespørgsel med antal deltagere, ønsket dato og type arrangement — så vender vi tilbage hurtigst muligt.
+          </p>
+          <a
+            href="mailto:kontakt@hskf.dk?subject=Bookingforesp%C3%B8rgsel%20%E2%80%93%20Skydeoplevelse&body=Hej%20HSKF%2C%0A%0AJeg%20vil%20gerne%20booke%20en%20skydeoplevelse%20for%20vores%20gruppe.%0A%0AType%20arrangement%3A%20%0AAntal%20deltagere%3A%20%0A%C3%98nsket%20dato%3A%20%0AKontaktinfo%3A%20"
+            class="btn-primary w-full text-center block mb-3"
+            style="padding: 0.875rem 1.5rem;"
+          >
+            <span class="flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Send bookingforespørgsel
+            </span>
+          </a>
+          <p class="text-xs text-center text-gray-500 dark:text-gray-500">
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

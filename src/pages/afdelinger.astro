@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Afdelinger" description="HSKF har to skydebaner: Toksværd udendørs og Holmegaard indendørs.">
+<BaseLayout title="Afdelinger" description="HSKF råder over to skydebaner – en udendørs bane i Toksværd og en indendørs bane i Holmegaard. Pistol og riffel for alle niveauer.">
 
   <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +41,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <p class="font-medium text-sm mb-4" style="color: var(--color-primary-500);">Riffel · Pistol</p>
             <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5 flex-grow">
-              Udendørs Toksværd er vores smukke udendørs anlæg beliggende i naturskønne omgivelser. Banen er ideel til riffel- og pistoletræning under åben himmel og er åben i sommersæsonen.
+              Udendørs Toksværd er vores smukke udendørs anlæg beliggende i naturskønne omgivelser. Banen er ideel til riffel- og pistoletræning under åben himmel. Primær bane i sommerhalvåret.
             </p>
             <ul class="space-y-2 mb-6">
               <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -54,7 +54,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </li>
               <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Åben: 9. april – 25. september (sommersæson)
+                Primær bane i sommerhalvåret
+              </li>
+              <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                Kørestolsvenlig niveaufri adgang
               </li>
             </ul>
             <div class="flex items-start gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -83,7 +87,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Indendørs Fensmark</h2>
             <p class="font-medium text-sm mb-4" style="color: var(--color-primary-500);">Riffel · Pistol</p>
             <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5 flex-grow">
-              Vores indendørs skydecenter i Holmegaard huser faciliteter til riffel- og pistolskydning. Perfekte forhold uanset vejret – ideelt for den seriøse skytte såvel som begynderen. Banen er åben i vinterhalvåret og lukker, når udendørsbanen i Toksværd åbner for sommersæsonen.
+              Vores indendørs skydecenter i Holmegaard huser faciliteter til riffel- og pistolskydning. Perfekte forhold uanset vejret – ideelt for den seriøse skytte såvel som begynderen. Primær bane i vinterhalvåret.
             </p>
             <ul class="space-y-2 mb-6">
               <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -96,7 +100,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </li>
               <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Åben: 25. september – 9. april (vintersæson)
+                Primær bane i vinterhalvåret
+              </li>
+              <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <svg class="w-4 h-4 flex-shrink-0" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Banen er i kælder – ikke tilgængelig for kørestolsbrugere
               </li>
             </ul>
             <div class="flex items-start gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -147,18 +155,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }).addTo(map);
 
       const orangeIcon = L.divIcon({
-        html: '<div style="background:#f97316;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
+        html: '<div style="background:#f97316;width:26px;height:26px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
         className: '',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10],
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
         popupAnchor: [0, -14],
       });
 
       const tealIcon = L.divIcon({
-        html: '<div style="background:#14b8a6;width:20px;height:20px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
+        html: '<div style="background:#14b8a6;width:26px;height:26px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>',
         className: '',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10],
+        iconSize: [26, 26],
+        iconAnchor: [13, 13],
         popupAnchor: [0, -14],
       });
 
@@ -168,7 +176,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       L.marker([55.2788, 11.8117], { icon: tealIcon })
         .addTo(map)
-        .bindPopup('<strong>Indendørs Fensmark</strong><br><a href="https://maps.google.com/?q=Villavej+2,+4684+Holmegaard" target="_blank">Villavej 2, 4684 Holmegaard</a><br><em>Indendørs · Pistol · Vinterhalvåret</em>');
+        .bindPopup('<strong>Indendørs Fensmark</strong><br><a href="https://maps.google.com/?q=Villavej+2,+4684+Holmegaard" target="_blank">Villavej 2, 4684 Holmegaard</a><br><em>Indendørs · Riffel &amp; Pistol</em>');
     });
   </script>
 

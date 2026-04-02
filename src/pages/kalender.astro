@@ -70,9 +70,17 @@ const past = allEvents
                     ))
                   : null
                 }
-                <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                  📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
-                </span>
+                {event.location === 'extern' ? (
+                  <span class="tag text-xs" style="background-color:#ede9fe;color:#5b21b6;">
+                    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle"></span>
+                    {event.venue}
+                  </span>
+                ) : (
+                  <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
+                    <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
+                    {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                  </span>
+                )}
               </div>
               <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
               <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
@@ -82,6 +90,23 @@ const past = allEvents
                 {formatDate(event.date)} · kl. {event.time}
               </div>
               <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{event.description}</p>
+              {event.location === 'extern' && event.address && (
+                <div class="mb-4">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm font-medium"
+                    style="color: var(--color-primary-500);"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    {event.address}
+                  </a>
+                </div>
+              )}
               <div class="flex flex-wrap sm:flex-row flex-col gap-2">
                 {event.link && (
                   <a
@@ -124,7 +149,7 @@ const past = allEvents
             <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
-            <span id="toggle-label">Vis tidligere arrangementer ({past.length})</span>
+            <span id="toggle-label">Vis tidligere</span>
           </button>
 
           <div id="past-events" class="hidden space-y-4">
@@ -155,9 +180,17 @@ const past = allEvents
                         ))
                       : null
                     }
-                    <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                      📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                  {event.location === 'extern' ? (
+                    <span class="tag text-xs" style="background-color:#ede9fe;color:#5b21b6;">
+                      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle"></span>
+                      {event.venue}
                     </span>
+                  ) : (
+                    <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
+                      <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
+                      {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                    </span>
+                  )}
                   </div>
                   <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
                   <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
@@ -216,7 +249,7 @@ const past = allEvents
         if (label) {
           label.textContent = isHidden
             ? 'Skjul tidligere arrangementer'
-            : 'Vis tidligere arrangementer (' + count + ')';
+            : 'Vis tidligere';
         }
       });
     }
