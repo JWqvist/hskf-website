@@ -142,7 +142,7 @@ function getDisciplineClass(d: string) {
         </div>
         <div>
           <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">2</div>
-          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Skydebaner</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Skydeanlæg · 15m + 25/50m</div>
         </div>
         <div>
           <div class="text-4xl font-extrabold mb-1" style="color: var(--color-primary-500);">DGI</div>
@@ -168,7 +168,9 @@ function getDisciplineClass(d: string) {
         {latestEvents.map((event) => (
           <a href={`/kalender#event-${event.id}`} class="card p-6 border border-gray-100 dark:border-gray-800 block hover:border-gray-300 dark:hover:border-gray-600 transition-colors cursor-pointer">
             <div class="flex items-start justify-between mb-3">
-              <span class={`tag ${getDisciplineClass(event.discipline)}`}>{event.discipline}</span>
+              {event.disciplines && event.disciplines.map((d: string) => (
+                <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
+              ))}
               <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
                 {event.location === 'toksvær' ? 'Toksværd' : 'Holmegaard'}
               </span>
@@ -197,7 +199,7 @@ function getDisciplineClass(d: string) {
       <p class="text-xl mb-8 max-w-2xl mx-auto" style="color: #ffe4e6;">Mød os til en gratis prøveskydning og oplev fællesskabet i HSKF. Ingen erfaring er nødvendig – vi guider dig hele vejen.</p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="/kontakt" class="inline-flex items-center gap-2 font-bold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl" style="padding: 1rem 2rem; background-color: white; color: var(--color-primary-600);">
-          Find os her
+          Kontakt os her
         </a>
         <a href="/traeningstider" class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200" style="padding: 1rem 2rem; border: 2px solid rgba(255,255,255,0.5); color: white;">
           Se træningstider
