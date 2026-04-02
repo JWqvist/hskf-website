@@ -63,7 +63,9 @@ Displayed on the **Kalender** page. Each event automatically generates a `.ics` 
 | `title` | `string` | Name of the event |
 | `date` | `string` | Date in `YYYY-MM-DD` format |
 | `time` | `string` | Start time in `HH:MM` format (e.g. `"18:30"`) |
-| `location` | `string` | Either `"toksvær"` (Lundebakkevej 18C) or `"holmegaard"` (Villavej 2) |
+| `location` | `string` | `"toksvær"` (Lundebakkevej 18C), `"holmegaard"` (Villavej 2), or `"extern"` (external venue) |
+| `venue` | `string` | **Required for `extern`** — Name of the external venue, e.g. `"Næstved Skyttecenter"` |
+| `address` | `string` | **Required for `extern`** — Full address shown as a Google Maps link, e.g. `"Teatergade 8, 4700 Næstved"` |
 | `disciplines` | `string[]` | List of disciplines, e.g. `["Riffel", "Pistol"]`. Use an empty array `[]` if not applicable. |
 | `description` | `string` | Free-text description of the event |
 | `link` | `object` \| `null` | Optional action button on the event card. Omit or set to `null` for no button. |
@@ -71,6 +73,24 @@ Displayed on the **Kalender** page. Each event automatically generates a `.ics` 
 | `link.href` | `string` | URL or `mailto:` address the button links to |
 
 > **Note:** When an event is added, `scripts/generate-ics.mjs` runs automatically on the next `npm run build` and creates `/public/ics/event-{id}.ics`.
+
+**Extern location example:**
+
+```json
+{
+  "id": 7,
+  "title": "DGI Pistolstævne – Næstved",
+  "date": "2026-05-18",
+  "time": "09:00",
+  "location": "extern",
+  "venue": "Næstved Skyttecenter",
+  "address": "Teatergade 8, 4700 Næstved",
+  "disciplines": ["Pistol"],
+  "description": "DGI kredsstævne i pistol. Alle pistolskytter er velkomne til at deltage."
+}
+```
+
+Extern events are shown with a **purple location tag** and the venue name. The address is displayed as a clickable Google Maps link on the calendar page.
 
 ---
 

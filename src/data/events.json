@@ -43,27 +43,5 @@
     "location": "toksvær",
     "disciplines": ["Pistol"],
     "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne."
-  },
-  {
-    "id": 6,
-    "title": "TEST – DGI Riffelstævne Vordingborg",
-    "date": "2026-04-28",
-    "time": "10:00",
-    "location": "extern",
-    "venue": "Vordingborg Skyttecenter",
-    "address": "Algade 52, 4760 Vordingborg",
-    "disciplines": ["Riffel"],
-    "description": "TEST EVENT – DGI kredsstævne i riffel afholdt på Vordingborg Skyttecenter. SLET MIG efter test."
-  },
-  {
-    "id": 5,
-    "title": "DGI Pistolstævne – Næstved",
-    "date": "2026-05-18",
-    "time": "09:00",
-    "location": "extern",
-    "venue": "Næstved Skyttecenter",
-    "address": "Teatergade 8, 4700 Næstved",
-    "disciplines": ["Pistol"],
-    "description": "DGI kredssstævne i pistol afholdt på Næstved Skyttecenter. Alle pistolskytter fra HSKF er velkomne til at deltage."
   }
 ]
