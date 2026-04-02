@@ -71,7 +71,8 @@ const past = allEvents
                   : null
                 }
                 <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                  📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                  <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
+                  {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
                 </span>
               </div>
               <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
@@ -156,7 +157,8 @@ const past = allEvents
                       : null
                     }
                     <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                      📍 {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
+                      <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
+                      {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
                     </span>
                   </div>
                   <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
