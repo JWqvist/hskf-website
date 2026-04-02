@@ -168,8 +168,13 @@ function getDisciplineClass(d: string) {
         {latestEvents.map((event) => (
           <a href={`/kalender#event-${event.id}`} class="card p-6 border border-gray-100 dark:border-gray-800 block hover:border-gray-300 dark:hover:border-gray-600 transition-colors cursor-pointer">
             <div class="flex items-start justify-between mb-3">
-              <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                {event.location === 'toksvær' ? 'Toksværd' : 'Holmegaard'}
+              <span class="tag text-xs" style={
+                event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' :
+                event.location === 'extern' ? 'background-color:#ede9fe;color:#5b21b6;' :
+                'background-color:#ccfbf1;color:#115e59;'
+              }>
+                <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : event.location === 'extern' ? '#7c3aed' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
+                {event.location === 'toksvær' ? 'Toksværd' : event.location === 'extern' ? (event.venue || 'Ekstern') : 'Holmegaard'}
               </span>
             </div>
             <h3 class="font-bold text-gray-900 dark:text-white mb-1.5 text-lg leading-snug">{event.title}</h3>
