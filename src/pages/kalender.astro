@@ -125,7 +125,7 @@ const past = allEvents
             <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
-            <span id="toggle-label">Vis tidligere arrangementer ({past.length})</span>
+            <span id="toggle-label">Vis tidligere</span>
           </button>
 
           <div id="past-events" class="hidden space-y-4">
@@ -218,7 +218,7 @@ const past = allEvents
         if (label) {
           label.textContent = isHidden
             ? 'Skjul tidligere arrangementer'
-            : 'Vis tidligere arrangementer (' + count + ')';
+            : 'Vis tidligere';
         }
       });
     }
