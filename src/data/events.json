@@ -43,5 +43,16 @@
     "location": "toksvær",
     "disciplines": ["Pistol"],
     "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne."
+  },
+  {
+    "id": 5,
+    "title": "DGI Pistolstævne – Næstved",
+    "date": "2026-05-18",
+    "time": "09:00",
+    "location": "extern",
+    "venue": "Næstved Skyttecenter",
+    "address": "Teatergade 8, 4700 Næstved",
+    "disciplines": ["Pistol"],
+    "description": "DGI kredssstævne i pistol afholdt på Næstved Skyttecenter. Alle pistolskytter fra HSKF er velkomne til at deltage."
   }
 ]

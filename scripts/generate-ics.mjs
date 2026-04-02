@@ -29,7 +29,9 @@ for (const event of events) {
   const [hour, min] = event.time.split(':');
   const timeStart = `${hour}${min}00`;
   const timeEnd = `${String(parseInt(hour) + 2).padStart(2, '0')}${min}00`;
-  const location = LOCATIONS[event.location] ?? 'Holmegaard';
+  const location = event.location === 'extern'
+    ? (event.address ? event.address.replace(/,/g, '\\,') : 'Ekstern lokation')
+    : (LOCATIONS[event.location] ?? 'Holmegaard');
   const desc = event.description.replace(/\n/g, '\\n').replace(/,/g, '\\,');
   const title = event.title.replace(/,/g, '\\,');
 
