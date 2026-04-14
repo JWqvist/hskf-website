@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const vedtaegter = [
+  {
+    title: 'Holmegaard Skytteforenings vedtægter',
+    description: 'Foreningens officielle vedtægter.',
+    href: '/vedtaegter.pdf',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  },
+];
+
+// Referater — tilføj nye her som { year: number, filename: string, title: string, description: string }
+const referater = [
+  {
+    year: 2026,
+    title: 'Referat — Årsmøde 2026',
+    description: 'Referat fra Holmegaard Skytteforenings ordinære årsmøde 2026.',
+    href: '/referater/referat-aarsmøde-2026.pdf',
+  },
+];
+---
+
+<BaseLayout title="Dokumenter" description="Holmegaard Skytteforenings officielle dokumenter — vedtægter og referater fra årsmøder.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-12">
+        <h1 class="section-title">Dokumenter</h1>
+        <p class="section-subtitle">Foreningens officielle dokumenter. Klik på et dokument for at åbne det.</p>
+      </div>
+
+      <!-- Vedtægter -->
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Vedtægter</h2>
+        <div class="space-y-3">
+          {vedtaegter.map((doc) => (
+            <a
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 card border border-gray-100 dark:border-gray-800 p-5 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group"
+            >
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: var(--color-primary-50, #f0fdf4);">
+                <svg class="w-5 h-5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={doc.icon} />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{doc.title}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{doc.description}</div>
+              </div>
+              <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Referater -->
+      <section>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Referater fra årsmøder</h2>
+        {referater.length === 0 ? (
+          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center rounded-xl">
+            <p class="text-gray-500 dark:text-gray-400">Ingen referater tilgængelige endnu.</p>
+          </div>
+        ) : (
+          <div class="space-y-3">
+            {referater.map((doc) => (
+              <a
+                href={doc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-4 card border border-gray-100 dark:border-gray-800 p-5 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group"
+              >
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: var(--color-primary-50, #f0fdf4);">
+                  <svg class="w-5 h-5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{doc.title}</div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{doc.description}</div>
+                </div>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+
+    </div>
+  </div>
+
+</BaseLayout>
