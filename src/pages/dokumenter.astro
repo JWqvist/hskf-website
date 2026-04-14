@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Referater — tilføj nye her som { year: number, filename: string, title: string }
+const referater = [
+  { year: 2026, filename: 'referat-aarsmøde-2026.pdf', title: 'Referat — Årsmøde 2026' },
+];
+---
+
+<BaseLayout title="Dokumenter" description="Holmegaard Skytteforenings officielle dokumenter — vedtægter og referater fra årsmøder.">
+
+  <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-12">
+        <h1 class="section-title">Dokumenter</h1>
+        <p class="section-subtitle">Foreningens officielle dokumenter — vedtægter og referater fra årsmøder.</p>
+      </div>
+
+      <!-- Vedtægter -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Vedtægter</h2>
+
+        <div class="card border border-gray-100 dark:border-gray-800 overflow-hidden rounded-2xl shadow-lg">
+          <div class="w-full" style="height: 80vh;">
+            <iframe
+              src="/vedtaegter.pdf"
+              class="w-full h-full"
+              style="border: none;"
+              title="Vedtægter for Holmegaard Skytteforening"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-between">
+          <p class="text-sm text-gray-500 dark:text-gray-400">Kan du ikke se PDF'en? Hent den direkte.</p>
+          <a
+            href="/vedtaegter.pdf"
+            download
+            class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 px-4 py-2 text-sm"
+            style="border: 1px solid rgba(0,0,0,0.15); color: var(--color-primary-600);"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Download PDF
+          </a>
+        </div>
+      </section>
+
+      <!-- Referater -->
+      <section>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Referater fra årsmøder</h2>
+
+        {referater.length === 0 ? (
+          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center rounded-2xl">
+            <p class="text-gray-500 dark:text-gray-400">Ingen referater tilgængelige endnu.</p>
+          </div>
+        ) : (
+          <div class="space-y-12">
+            {referater.map((referat) => (
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{referat.title}</h3>
+                <div class="card border border-gray-100 dark:border-gray-800 overflow-hidden rounded-2xl shadow-lg">
+                  <div class="w-full" style="height: 80vh;">
+                    <iframe
+                      src={`/referater/${referat.filename}`}
+                      class="w-full h-full"
+                      style="border: none;"
+                      title={referat.title}
+                    ></iframe>
+                  </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Kan du ikke se PDF'en? Hent den direkte.</p>
+                  <a
+                    href={`/referater/${referat.filename}`}
+                    download
+                    class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 px-4 py-2 text-sm"
+                    style="border: 1px solid rgba(0,0,0,0.15); color: var(--color-primary-600);"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    Download PDF
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+    </div>
+  </div>
+
+</BaseLayout>
