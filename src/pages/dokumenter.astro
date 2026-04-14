@@ -1,91 +1,93 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Referater — tilføj nye her som { year: number, filename: string, title: string }
+const vedtaegter = [
+  {
+    title: 'Holmegaard Skytteforenings vedtægter',
+    description: 'Foreningens officielle vedtægter.',
+    href: '/vedtaegter.pdf',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  },
+];
+
+// Referater — tilføj nye her som { year: number, filename: string, title: string, description: string }
 const referater = [
-  { year: 2026, filename: 'referat-aarsmøde-2026.pdf', title: 'Referat — Årsmøde 2026' },
+  {
+    year: 2026,
+    title: 'Referat — Årsmøde 2026',
+    description: 'Referat fra Holmegaard Skytteforenings ordinære årsmøde 2026.',
+    href: '/referater/referat-aarsmøde-2026.pdf',
+  },
 ];
 ---
 
 <BaseLayout title="Dokumenter" description="Holmegaard Skytteforenings officielle dokumenter — vedtægter og referater fra årsmøder.">
 
   <div class="bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 py-16">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="max-w-2xl mb-12">
         <h1 class="section-title">Dokumenter</h1>
-        <p class="section-subtitle">Foreningens officielle dokumenter — vedtægter og referater fra årsmøder.</p>
+        <p class="section-subtitle">Foreningens officielle dokumenter. Klik på et dokument for at åbne det.</p>
       </div>
 
       <!-- Vedtægter -->
-      <section class="mb-16">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Vedtægter</h2>
-
-        <div class="card border border-gray-100 dark:border-gray-800 overflow-hidden rounded-2xl shadow-lg">
-          <div class="w-full" style="height: 80vh;">
-            <iframe
-              src="/vedtaegter.pdf"
-              class="w-full h-full"
-              style="border: none;"
-              title="Vedtægter for Holmegaard Skytteforening"
-            ></iframe>
-          </div>
-        </div>
-
-        <div class="mt-6 flex items-center justify-between">
-          <p class="text-sm text-gray-500 dark:text-gray-400">Kan du ikke se PDF'en? Hent den direkte.</p>
-          <a
-            href="/vedtaegter.pdf"
-            download
-            class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 px-4 py-2 text-sm"
-            style="border: 1px solid rgba(0,0,0,0.15); color: var(--color-primary-600);"
-          >
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            Download PDF
-          </a>
+      <section class="mb-12">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Vedtægter</h2>
+        <div class="space-y-3">
+          {vedtaegter.map((doc) => (
+            <a
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 card border border-gray-100 dark:border-gray-800 p-5 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group"
+            >
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: var(--color-primary-50, #f0fdf4);">
+                <svg class="w-5 h-5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={doc.icon} />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{doc.title}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{doc.description}</div>
+              </div>
+              <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          ))}
         </div>
       </section>
 
       <!-- Referater -->
       <section>
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Referater fra årsmøder</h2>
-
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Referater fra årsmøder</h2>
         {referater.length === 0 ? (
-          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center rounded-2xl">
+          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center rounded-xl">
             <p class="text-gray-500 dark:text-gray-400">Ingen referater tilgængelige endnu.</p>
           </div>
         ) : (
-          <div class="space-y-12">
-            {referater.map((referat) => (
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{referat.title}</h3>
-                <div class="card border border-gray-100 dark:border-gray-800 overflow-hidden rounded-2xl shadow-lg">
-                  <div class="w-full" style="height: 80vh;">
-                    <iframe
-                      src={`/referater/${referat.filename}`}
-                      class="w-full h-full"
-                      style="border: none;"
-                      title={referat.title}
-                    ></iframe>
-                  </div>
+          <div class="space-y-3">
+            {referater.map((doc) => (
+              <a
+                href={doc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-4 card border border-gray-100 dark:border-gray-800 p-5 rounded-xl hover:border-gray-300 dark:hover:border-gray-600 transition-colors group"
+              >
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background-color: var(--color-primary-50, #f0fdf4);">
+                  <svg class="w-5 h-5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                 </div>
-                <div class="mt-6 flex items-center justify-between">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Kan du ikke se PDF'en? Hent den direkte.</p>
-                  <a
-                    href={`/referater/${referat.filename}`}
-                    download
-                    class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 px-4 py-2 text-sm"
-                    style="border: 1px solid rgba(0,0,0,0.15); color: var(--color-primary-600);"
-                  >
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    Download PDF
-                  </a>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">{doc.title}</div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{doc.description}</div>
                 </div>
-              </div>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             ))}
           </div>
         )}
