@@ -48,7 +48,7 @@ const past = allEvents
             <!-- Date block -->
             <div class="flex-shrink-0">
               <div class="w-20 text-center">
-                <div class="rounded-t-lg py-1" style="background-color: var(--color-primary-500);">
+                <div class="rounded-t-lg py-1" style="background-color: #374151;">
                   <span class="text-xs font-bold text-white uppercase tracking-wider">
                     {new Date(event.date).toLocaleDateString('da-DK', { month: 'short' })}
                   </span>
@@ -82,8 +82,8 @@ const past = allEvents
                   </span>
                 )}
                 {event.type === 'arrangement' && (
-                  <span class="tag text-xs" style="background-color:#fef3c7;color:#92400e;">
-                    Arrangement
+                  <span class="tag text-xs" style="background-color:#e5e7eb;color:#374151;font-style:italic;">
+                    Privat
                   </span>
                 )}
               </div>
@@ -127,6 +127,7 @@ const past = allEvents
                     {event.link.label}
                   </a>
                 )}
+                {event.type !== 'arrangement' && (
                 <a
                   href={`/ics/event-${event.id}.ics`}
                   class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg border transition-colors hover:opacity-80"
@@ -137,6 +138,7 @@ const past = allEvents
                   </svg>
                   Tilføj til kalender
                 </a>
+                )}
               </div>
             </div>
           </div>
