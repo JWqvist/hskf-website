@@ -5,7 +5,10 @@
     "date": "2025-09-25",
     "time": "18:30",
     "location": "holmegaard",
-    "disciplines": ["Riffel", "Pistol"],
+    "disciplines": [
+      "Riffel",
+      "Pistol"
+    ],
     "description": "Torsdag d. 25. september 2025 åbnede vi vintersæsonen på indendørsbanen i Fensmark. Riffelskytter kl. 18:30, pistolskytter kl. 19:30."
   },
   {
@@ -23,7 +26,10 @@
     "date": "2026-04-09",
     "time": "18:30",
     "location": "toksvær",
-    "disciplines": ["Riffel", "Pistol"],
+    "disciplines": [
+      "Riffel",
+      "Pistol"
+    ],
     "description": "Torsdag d. 9. april 2026 åbner vi udendørsbanen i Toksværd for sommersæsonen. Alle skytter – riffel og pistol – er velkomne fra kl. 18:30."
   },
   {
@@ -34,7 +40,10 @@
     "location": "toksvær",
     "disciplines": [],
     "description": "Lørdag d. 18. april inviterer vi til arbejdsdag på vores udendørs anlæg i Toksværd. Vi sætter banerne i stand til sæsonen – maling, murarbejde, rengøring og generel opfriskning. Foreningen sørger for frokost og forplejning. Kom, som det passer dig – hele dagen eller blot et par timer. Tag gerne arbejdsredskaber med.",
-    "link": { "label": "Tilmeld dig", "href": "https://forms.gle/24DPPLfPNg2sqTcQ8" }
+    "link": {
+      "label": "Tilmeld dig",
+      "href": "https://forms.gle/24DPPLfPNg2sqTcQ8"
+    }
   },
   {
     "id": 4,
@@ -42,16 +51,19 @@
     "date": "2026-04-25",
     "time": "09:00",
     "location": "toksvær",
-    "disciplines": ["Pistol"],
+    "disciplines": [
+      "Pistol"
+    ],
     "description": "Lørdag d. 25. april 2026 kl. 09:00 på 25m banen i Toksværd. Pistoltræning med instruktør – alle pistolskytter er velkomne. Pris: 200 kr. Begrænset antal pladser – først til mølle. Tilmeldingsfrist: 24. april. Tilmelding sker i klubben."
   },
   {
     "id": 3,
     "title": "Sydsjællands Soldaterforenings familiedag",
-    "date": "2026-05-03",
+    "date": "2026-05-02",
     "time": "09:00",
     "location": "toksvær",
     "disciplines": [],
-    "description": "Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien."
+    "description": "Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien.",
+    "type": "arrangement"
   }
 ]

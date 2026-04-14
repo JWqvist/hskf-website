@@ -81,6 +81,11 @@ const past = allEvents
                     {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
                   </span>
                 )}
+                {event.type === 'arrangement' && (
+                  <span class="tag text-xs" style="background-color:#fef3c7;color:#92400e;">
+                    Arrangement
+                  </span>
+                )}
               </div>
               <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
               <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
