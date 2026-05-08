@@ -15,16 +15,10 @@ function getDisciplineClass(d: string) {
   return map[d] || 'tag-mixed';
 }
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const upcoming = allEvents
-  .filter(e => new Date(e.date) >= today)
-  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-const past = allEvents
-  .filter(e => new Date(e.date) < today)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+// Sort all events ascending — filtering happens client-side
+const sortedEvents = [...allEvents].sort(
+  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+);
 ---
 
 <BaseLayout title="Kalender" description="HSKF stævner, arrangementer og skydeaftener – se hele kalenderen.">
@@ -36,19 +30,44 @@ const past = allEvents
         <p class="section-subtitle">Kommende stævner, arrangementer og særlige skydeaftener i HSKF.</p>
       </div>
 
-      <!-- Upcoming events -->
-      <div class="space-y-4 mb-16">
-        {upcoming.length === 0 && (
-          <div class="card border border-gray-100 dark:border-gray-800 p-8 text-center text-gray-500 dark:text-gray-400">
-            Ingen kommende arrangementer på nuværende tidspunkt. Tjek igen senere.
-          </div>
-        )}
-        {upcoming.map((event) => (
-          <div id={`event-${event.id}`} class="card border border-gray-100 dark:border-gray-800 p-6 flex flex-col sm:flex-row gap-6">
+      <!-- Upcoming events container -->
+      <div id="upcoming-events" class="space-y-4 mb-16">
+        <!-- Empty state — shown by JS if no upcoming events -->
+        <div id="no-upcoming-msg" style="display:none;" class="card border border-gray-100 dark:border-gray-800 p-8 text-center text-gray-500 dark:text-gray-400">
+          Ingen kommende arrangementer på nuværende tidspunkt. Tjek igen senere.
+        </div>
+      </div>
+
+      <!-- Past events toggle section — shown by JS if any past events exist -->
+      <div id="past-toggle-section" style="display:none;">
+        <button
+          id="toggle-past"
+          class="flex items-center gap-2 text-sm font-semibold mb-6 transition-colors"
+          style="color: var(--color-primary-500);"
+        >
+          <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+          <span id="toggle-label">Vis tidligere</span>
+        </button>
+
+        <div id="past-events" class="hidden space-y-4">
+          <!-- Past event cards moved here by JS -->
+        </div>
+      </div>
+
+      <!-- All events source — hidden, JS distributes to upcoming/past containers -->
+      <div id="all-events" style="display:none;">
+        {sortedEvents.map((event) => (
+          <div
+            id={`event-${event.id}`}
+            class="event-card card border border-gray-100 dark:border-gray-800 p-6 flex flex-col sm:flex-row gap-6"
+            data-date={event.date}
+          >
             <!-- Date block -->
             <div class="flex-shrink-0">
               <div class="w-20 text-center">
-                <div class="rounded-t-lg py-1" style={event.type === 'arrangement' ? 'background-color: #374151;' : 'background-color: var(--color-primary-500);'}>
+                <div class="event-date-header rounded-t-lg py-1" style={event.type === 'arrangement' ? 'background-color: #374151;' : 'background-color: var(--color-primary-500);'}>
                   <span class="text-xs font-bold text-white uppercase tracking-wider">
                     {new Date(event.date).toLocaleDateString('da-DK', { month: 'short' })}
                   </span>
@@ -112,7 +131,8 @@ const past = allEvents
                   </a>
                 </div>
               )}
-              <div class="flex flex-wrap sm:flex-row flex-col gap-2">
+              <!-- event-links: hidden for past events by JS -->
+              <div class="event-links flex flex-wrap sm:flex-row flex-col gap-2">
                 {event.link && (
                   <a
                     href={event.link.href}
@@ -128,91 +148,22 @@ const past = allEvents
                   </a>
                 )}
                 {event.type !== 'arrangement' && (
-                <a
-                  href={`/ics/event-${event.id}.ics`}
-                  class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg border transition-colors hover:opacity-80"
-                  style="color: var(--color-primary-500); border-color: var(--color-primary-500);"
-                >
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                  </svg>
-                  Tilføj til kalender
-                </a>
+                  <a
+                    href={`/ics/event-${event.id}.ics`}
+                    class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg border transition-colors hover:opacity-80"
+                    style="color: var(--color-primary-500); border-color: var(--color-primary-500);"
+                  >
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Tilføj til kalender
+                  </a>
                 )}
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      <!-- Past events toggle -->
-      {past.length > 0 && (
-        <div>
-          <button
-            id="toggle-past"
-            class="flex items-center gap-2 text-sm font-semibold mb-6 transition-colors"
-            style="color: var(--color-primary-500);"
-          >
-            <svg id="toggle-icon" class="w-4 h-4 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-            <span id="toggle-label">Vis tidligere</span>
-          </button>
-
-          <div id="past-events" class="hidden space-y-4">
-            {past.map((event) => (
-              <div class="card border border-gray-100 dark:border-gray-800 p-6 flex flex-col sm:flex-row gap-6 opacity-60">
-                <!-- Date block -->
-                <div class="flex-shrink-0">
-                  <div class="w-20 text-center">
-                    <div class="rounded-t-lg py-1 bg-gray-400">
-                      <span class="text-xs font-bold text-white uppercase tracking-wider">
-                        {new Date(event.date).toLocaleDateString('da-DK', { month: 'short' })}
-                      </span>
-                    </div>
-                    <div class="bg-gray-100 dark:bg-gray-800 rounded-b-lg py-2">
-                      <span class="text-3xl font-extrabold text-gray-900 dark:text-white leading-none">
-                        {new Date(event.date).getDate()}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Content -->
-                <div class="flex-1 min-w-0">
-                  <div class="flex flex-wrap items-center gap-2 mb-2">
-                    {event.disciplines && event.disciplines.length > 0
-                      ? event.disciplines.map((d: string) => (
-                          <span class={`tag ${getDisciplineClass(d)}`}>{d}</span>
-                        ))
-                      : null
-                    }
-                  {event.location === 'extern' ? (
-                    <span class="tag text-xs" style="background-color:#ede9fe;color:#5b21b6;">
-                      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle"></span>
-                      {event.venue}
-                    </span>
-                  ) : (
-                    <span class="tag text-xs" style={event.location === 'toksvær' ? 'background-color:#fed7aa;color:#9a3412;' : 'background-color:#ccfbf1;color:#115e59;'}>
-                      <span style={`display:inline-block;width:10px;height:10px;border-radius:50%;background:${event.location === 'toksvær' ? '#f97316' : '#14b8a6'};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.2);margin-right:4px;vertical-align:middle`}></span>
-                      {event.location === 'toksvær' ? 'Udendørs Toksværd' : 'Indendørs Fensmark'}
-                    </span>
-                  )}
-                  </div>
-                  <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{event.title}</h2>
-                  <div class="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    {formatDate(event.date)} · kl. {event.time}
-                  </div>
-                  <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{event.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       <!-- Info box -->
       <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
@@ -230,36 +181,85 @@ const past = allEvents
   </div>
 
   <script is:inline>
-    // Highlight event from anchor link
-    if (window.location.hash) {
-      var target = document.querySelector(window.location.hash);
-      if (target) {
-        setTimeout(function() {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          target.style.outline = '2px solid var(--color-primary-500)';
-          target.style.borderRadius = '12px';
-          setTimeout(function() { target.style.outline = ''; }, 2000);
-        }, 200);
-      }
-    }
+    (function () {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-    const btn = document.getElementById('toggle-past');
-    const list = document.getElementById('past-events');
-    const icon = document.getElementById('toggle-icon');
-    if (btn && list && icon) {
-      const count = list.children.length;
-      btn.addEventListener('click', function() {
-        const isHidden = list.classList.contains('hidden');
-        list.classList.toggle('hidden');
-        icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-        var label = document.getElementById('toggle-label');
-        if (label) {
-          label.textContent = isHidden
-            ? 'Skjul tidligere arrangementer'
-            : 'Vis tidligere';
+      var source = document.getElementById('all-events');
+      var upcomingContainer = document.getElementById('upcoming-events');
+      var pastContainer = document.getElementById('past-events');
+      var noUpcomingMsg = document.getElementById('no-upcoming-msg');
+      var pastToggleSection = document.getElementById('past-toggle-section');
+
+      var cards = source ? Array.from(source.querySelectorAll('.event-card')) : [];
+      var upcomingCount = 0;
+      var pastCount = 0;
+
+      cards.forEach(function (card) {
+        var dateStr = card.getAttribute('data-date');
+        var eventDate = new Date(dateStr);
+        eventDate.setHours(0, 0, 0, 0);
+
+        if (eventDate < today) {
+          // Past event: dim it, hide action links, move to past container
+          card.classList.add('opacity-60');
+          var links = card.querySelector('.event-links');
+          if (links) links.style.display = 'none';
+          // Swap date header to gray
+          var dateHeader = card.querySelector('.event-date-header');
+          if (dateHeader) {
+            dateHeader.style.background = '#9ca3af';
+          }
+          if (pastContainer) pastContainer.appendChild(card);
+          pastCount++;
+        } else {
+          // Upcoming event
+          if (upcomingContainer) upcomingContainer.appendChild(card);
+          upcomingCount++;
         }
       });
-    }
+
+      // Show empty state if no upcoming events
+      if (upcomingCount === 0 && noUpcomingMsg) {
+        noUpcomingMsg.style.display = '';
+      }
+
+      // Show past toggle section if there are past events
+      if (pastCount > 0 && pastToggleSection) {
+        pastToggleSection.style.display = '';
+      }
+
+      // Highlight event from anchor link
+      if (window.location.hash) {
+        var target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(function () {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.style.outline = '2px solid var(--color-primary-500)';
+            target.style.borderRadius = '12px';
+            setTimeout(function () { target.style.outline = ''; }, 2000);
+          }, 200);
+        }
+      }
+
+      // Past events toggle
+      var btn = document.getElementById('toggle-past');
+      var list = document.getElementById('past-events');
+      var icon = document.getElementById('toggle-icon');
+      if (btn && list && icon) {
+        btn.addEventListener('click', function () {
+          var isHidden = list.classList.contains('hidden');
+          list.classList.toggle('hidden');
+          icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+          var label = document.getElementById('toggle-label');
+          if (label) {
+            label.textContent = isHidden
+              ? 'Skjul tidligere arrangementer'
+              : 'Vis tidligere';
+          }
+        });
+      }
+    })();
   </script>
 
 </BaseLayout>
