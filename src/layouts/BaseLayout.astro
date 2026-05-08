@@ -161,8 +161,8 @@ const noticesJson = JSON.stringify(notices);
       var active = null;
       for (var i = 0; i < notices.length; i++) {
         var n = notices[i];
-        var from = new Date(n.from);
-        var to = new Date(n.to);
+        var from = new Date(n.from + 'T00:00:00');
+        var to = new Date(n.to + 'T23:59:59');
         if (today >= from && today <= to) { active = n; break; }
       }
 
