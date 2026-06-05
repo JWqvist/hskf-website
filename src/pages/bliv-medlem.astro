@@ -5,20 +5,21 @@ const steps = [
   {
     step: '1',
     title: 'Mød os til en gratis prøveskydning',
-    desc: 'Kom bare forbi til en af vores træningstider – ingen tilmelding er nødvendig. Vi låner dig udstyr og en erfaren instruktør guider dig igennem sikkerhed og teknik. Det er helt gratis og uforpligtende.',
+    desc: 'Kom bare forbi til en af vores træningstider – ingen tilmelding er nødvendig. Vi låner dig udstyr og en erfaren instruktør guider dig igennem sikkerhed og teknik. Det er helt gratis og uforpligtende. Medbring billedlegitimation.',
     action: null,
   },
   {
     step: '2',
     title: 'Indmeldelse i HSKF',
     desc: 'Har du prøvet skydningen og vil gerne blive medlem? Send en email til bestyrelsen med dit navn, adresse og disciplinønsker. Vi sørger for indmeldelse i klubben.',
-    action: { label: 'Send indmeldelse', href: 'mailto:kontakt@hskf.dk?subject=Indmeldelse%20i%20HSKF&body=Hej%20HSKF%2C%0A%0AJeg%20er%20interesseret%20i%20at%20melde%20mig%20ind%20i%20Holmegaard%20Skytteforening.%0A%0ANavn%3A%20%0AAdresse%3A%20%0ATelefon%3A%20%0ADisciplin%3A%20', external: false },
+    action: { label: 'Send indmeldelse', href: 'mailto:kontakt@hskf.dk?subject=Indmeldelse%20i%20HSKF&body=Hej%20HSKF%2C%0A%0AJeg%20vil%20gerne%20melde%20mig%20ind%20i%20Holmegaard%20Skytteforening.%0A%0AFornavn%3A%20%0AEfternavn%3A%20%0AAdresse%3A%20%0APostnr.%3A%20%0ABy%3A%20%0AF%C3%B8dselsdato%3A%20DD-MM-%C3%85%C3%85%C3%85%C3%85%0ATelefon%3A%20%0ADisciplin%3A%20Pistol%20%2F%20Riffel%20%2F%20Begge%0A%0A---%0ABem%C3%A6rk%3A%20Indmeldelse%20kr%C3%A6ver%20personligt%20fremm%C3%B8de%20med%20billedlegitimation.%0ADenne%20mail%20forregistrerer%20dine%20oplysninger%20s%C3%A5%20vi%20er%20klar%20n%C3%A5r%20du%20m%C3%B8der%20op.', external: false },
   },
   {
     step: '3',
     title: 'Søg om SKV-tilladelse',
-    desc: 'For at blive aktivt skydende medlem kræves en SKV-tilladelse (skydevåbentilladelse til sportsbrug) fra politiet. Vi hjælper dig med papirerne.',
-    action: { label: 'SKV-blanketter (Politiet)', href: 'https://skvportal.microsoftcrmportals.com/blanketter/', external: true },
+    desc: '',
+    richDesc: true,
+    action: { label: 'Udfyld SKV6-ansøgning her', href: 'https://skvportal.microsoftcrmportals.com/blanketter/skv-blanket-6', external: true },
   },
 ];
 ---
@@ -44,6 +45,25 @@ const steps = [
                 <div class="flex-1">
                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
                   <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{item.desc}</p>
+                  {item.richDesc && item.step === '3' && (
+                    <div class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 space-y-3 text-sm">
+                      <p>Alle medlemmer over 15 år, der skyder med registreringspligtige våben, skal have en <strong>SKV-tilladelse</strong> (SKV6 eller SKV1/2/3). Kun luftpistoler/-rifler t.o.m. 4,5mm er undtaget — cal. .22 og større kræver SKV.</p>
+                      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 space-y-2">
+                        <p class="font-semibold text-gray-900 dark:text-white">Sådan søger du:</p>
+                        <ol class="list-decimal list-inside space-y-1">
+                          <li>Udfyld blanketten elektronisk (brug knappen nedenfor)</li>
+                          <li>Foreningsnavn: <strong>Holmegaard Skytteforening</strong></li>
+                          <li>SKV nr.: <strong>358</strong></li>
+                          <li>Udskriv og underskriv blanketten</li>
+                        </ol>
+                      </div>
+                      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 space-y-2">
+                        <p class="font-semibold text-gray-900 dark:text-white">Indsendelse:</p>
+                        <p>Send via <a href="https://www.borger.dk" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-primary-500);">borger.dk</a> → Digital Post → Vælg modtager → <em>Rigspolitiet / PAC Våben</em></p>
+                        <p class="text-xs text-gray-500">Alternativt kan blanketten afleveres på skydebanen, hvor instruktørerne også hjælper med udfyldelse.</p>
+                      </div>
+                    </div>
+                  )}
                   {item.action && (
                     <a
                       href={item.action.href}
@@ -89,7 +109,7 @@ const steps = [
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                Udstyr lånes – medbring blot godt humør
+                Udstyr lånes – billedlegitimation påkrævet
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -98,6 +118,10 @@ const steps = [
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                 SKV-vejledning gives af klubbens instruktører
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" style="color: var(--color-primary-500);" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <a href="https://skvportal.microsoftcrmportals.com/blanketter/" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-primary-500);">SKV-blanketter (Politiet)</a>
               </li>
             </ul>
           </div>
