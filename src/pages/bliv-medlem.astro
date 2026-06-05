@@ -17,7 +17,8 @@ const steps = [
   {
     step: '3',
     title: 'Søg om SKV-tilladelse',
-    desc: 'Alle medlemmer over 15 år, der skyder med registreringspligtige våben, skal have en SKV-tilladelse (SKV6 eller SKV1/2/3). Kun luftpistoler/-rifler t.o.m. 4,5mm er undtaget — cal. .22 og større kræver SKV. Udfyld blanketten elektronisk og angiv foreningsnavn: Holmegaard Skytteforening, SKV nr.: 358. Udskriv, underskriv og send via borger.dk → Digital Post → Rigspolitiet / PAC Våben. Alternativt kan blanketten afleveres på skydebanen.',
+    desc: '',
+    richDesc: true,
     action: { label: 'Udfyld SKV6-ansøgning her', href: 'https://skvportal.microsoftcrmportals.com/blanketter/skv-blanket-6', external: true },
   },
 ];
@@ -44,6 +45,25 @@ const steps = [
                 <div class="flex-1">
                   <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
                   <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{item.desc}</p>
+                  {item.richDesc && item.step === '3' && (
+                    <div class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4 space-y-3 text-sm">
+                      <p>Alle medlemmer over 15 år, der skyder med registreringspligtige våben, skal have en <strong>SKV-tilladelse</strong> (SKV6 eller SKV1/2/3). Kun luftpistoler/-rifler t.o.m. 4,5mm er undtaget — cal. .22 og større kræver SKV.</p>
+                      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 space-y-2">
+                        <p class="font-semibold text-gray-900 dark:text-white">Sådan søger du:</p>
+                        <ol class="list-decimal list-inside space-y-1">
+                          <li>Udfyld blanketten elektronisk (brug knappen nedenfor)</li>
+                          <li>Foreningsnavn: <strong>Holmegaard Skytteforening</strong></li>
+                          <li>SKV nr.: <strong>358</strong></li>
+                          <li>Udskriv og underskriv blanketten</li>
+                        </ol>
+                      </div>
+                      <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 space-y-2">
+                        <p class="font-semibold text-gray-900 dark:text-white">Indsendelse:</p>
+                        <p>Send via <a href="https://www.borger.dk" target="_blank" rel="noopener noreferrer" class="underline" style="color: var(--color-primary-500);">borger.dk</a> → Digital Post → Vælg modtager → <em>Rigspolitiet / PAC Våben</em></p>
+                        <p class="text-xs text-gray-500">Alternativt kan blanketten afleveres på skydebanen, hvor instruktørerne også hjælper med udfyldelse.</p>
+                      </div>
+                    </div>
+                  )}
                   {item.action && (
                     <a
                       href={item.action.href}
