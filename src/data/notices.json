@@ -12,5 +12,16 @@
     "type": "info",
     "from": "2026-05-08",
     "to": "2026-05-14"
+  },
+  {
+    "id": "sensommerfest-2026",
+    "message": "Sensommerfest 29. august – tilmeld dig nu!",
+    "type": "info",
+    "from": "2026-06-07",
+    "to": "2026-08-20",
+    "link": {
+      "label": "Tilmeld her",
+      "href": "https://forms.gle/JLmY51cWYfZJXtQo6"
+    }
   }
 ]
