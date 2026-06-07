@@ -65,5 +65,21 @@
     "disciplines": [],
     "description": "Søndag d. 3. maj 2026 fra kl. 09:00 på 25m banen i Toksværd. Sydsjællands Soldaterforening holder familiedag hos os – en hyggelig dag for hele familien.",
     "type": "arrangement"
+  },
+  {
+    "id": 6,
+    "title": "Sensommerfest",
+    "date": "2026-08-29",
+    "time": "13:00",
+    "location": "toksvær",
+    "disciplines": [
+      "Riffel",
+      "Pistol"
+    ],
+    "description": "Lørdag d. 29. august 2026 kl. 13:00. Kom og vær med til en hyggelig og sjov dag med skydning, grill og godt selskab. Pris: 100 kr. pr. person inkl. ammunition og grillmad. Der kan købes øl, vand og andre drikkevarer. Alle medlemmer, familie og venner er velkomne.",
+    "link": {
+      "label": "Tilmeld dig",
+      "href": "https://forms.gle/JLmY51cWYfZJXtQo6"
+    }
   }
 ]
