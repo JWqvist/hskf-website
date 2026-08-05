@@ -67,6 +67,18 @@
     "type": "arrangement"
   },
   {
+    "id": 7,
+    "title": "Vi åbner igen efter sommerferien",
+    "date": "2026-08-06",
+    "time": "18:30",
+    "location": "toksvær",
+    "disciplines": [
+      "Riffel",
+      "Pistol"
+    ],
+    "description": "Torsdag d. 6. august 2026 åbner vi igen efter sommerferien på udendørsbanen i Toksværd. Alle skytter – riffel og pistol – er velkomne fra kl. 18:30."
+  },
+  {
     "id": 6,
     "title": "Sensommerfest",
     "date": "2026-08-29",
