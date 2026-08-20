@@ -77,21 +77,5 @@
       "Pistol"
     ],
     "description": "Sommerferien er slut – og vi glæder os til at se jer igen! Torsdag d. 6. august åbner vi igen udendørsbanen i Toksværd til første træning efter ferien. Både riffel- og pistolskytter er velkomne fra kl. 18:30 – kom og få rystet støvet af og skudt sommeren i gang igen. Vi ses på banen!"
-  },
-  {
-    "id": 6,
-    "title": "Sensommerfest",
-    "date": "2026-08-29",
-    "time": "13:00",
-    "location": "toksvær",
-    "disciplines": [
-      "Riffel",
-      "Pistol"
-    ],
-    "description": "Lørdag d. 29. august 2026 kl. 13:00. Kom og vær med til en hyggelig og sjov dag med skydning, grill og godt selskab. Pris: 100 kr. pr. person inkl. ammunition og grillmad. Der kan købes øl, vand og andre drikkevarer. Alle medlemmer, familie og venner er velkomne.",
-    "link": {
-      "label": "Tilmeld dig",
-      "href": "https://forms.gle/JLmY51cWYfZJXtQo6"
-    }
   }
 ]
